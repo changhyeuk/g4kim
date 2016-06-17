@@ -20,40 +20,40 @@ G4double energy = 60 * MeV;
 //============================================================================
 // HIT
 //============================================================================
-#include "G4VHit.hh"
-#include "G4THitsCollection.hh"
-
-class MyHit : public G4VHit
-{
-public:
-  MyHit(){};
-  ~MyHit(){};
-  MyHit(const MyHit& right)
-    : G4VHit()
-  {
-    eDepo      = right.eDepo;
-    position   = right.position;
-  };
-
-  const MyHit& operator=(const MyHit& right)
-  {
-    eDepo      = right.eDepo;
-    position   = right.position;
-    return *this;
-  }
-  
-public:
-  void SetEdeposit(G4double iedep){ eDepo = iedep; };
-  void SetPosition(G4ThreeVector ipos){ position = ipos; };
-
-  G4double GetEdeposit(){ return eDepo; };
-  G4ThreeVector GetPosition(){ return position; };
-
-private:
-  G4double       eDepo;
-  G4ThreeVector  position;
-};
-typedef G4THitsCollection<MyHit> MyHitsCollection;
+//#include "G4VHit.hh"
+//#include "G4THitsCollection.hh"
+//
+//class MyHit : public G4VHit
+//{
+//public:
+//  MyHit(){};
+//  ~MyHit(){};
+//  MyHit(const MyHit& right)
+//    : G4VHit()
+//  {
+//    eDepo      = right.eDepo;
+//    position   = right.position;
+//  };
+//
+//  const MyHit& operator=(const MyHit& right)
+//  {
+//    eDepo      = right.eDepo;
+//    position   = right.position;
+//    return *this;
+//  }
+//  
+//public:
+//  void SetEdeposit(G4double iedep){ eDepo = iedep; };
+//  void SetPosition(G4ThreeVector ipos){ position = ipos; };
+//
+//  G4double GetEdeposit(){ return eDepo; };
+//  G4ThreeVector GetPosition(){ return position; };
+//
+//private:
+//  G4double       eDepo;
+//  G4ThreeVector  position;
+//};
+//typedef G4THitsCollection<MyHit> MyHitsCollection;
 
 
 ////============================================================================
