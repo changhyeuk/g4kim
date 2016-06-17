@@ -1,18 +1,7 @@
 //
-// Geant4 single file example, by garam@kirams.re.kr
-//
-//   - physics builders regarding hadronic interactions were not included 
-//     in this example for simplicity
-//   - it is recommended to use this example only for trainning purpose
-//   - please read following documents before doing something using geant4
-//     https://geant4.web.cern.ch/geant4/support/userdocuments.shtml
-//       1. User's Guide for Application Developers
-//       2. Physics Reference Manual
-//       3. Frequently Asked Questions
-//       4. Installation Guide
+// G4KIM from the g4single file
 //
 
-//#include "globals.hh"
 #include "G4VUserDetectorConstruction.hh"
 #include "G4Material.hh"
 #include "G4Tubs.hh"
