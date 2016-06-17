@@ -247,7 +247,7 @@ public:
   {
     G4HCofThisEvent* hcte = e->GetHCofThisEvent();
     G4int n_max_hc = G4SDManager::GetSDMpointer()->GetCollectionCapacity();
-    MyHitsCollection* hc = 0;
+    DetectorHitsCollection* hc = 0;
     for (int i = 0; i < n_max_hc; ++i)
     {
       hc = (MyHitsCollection*) hcte->GetHC(i);

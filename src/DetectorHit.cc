@@ -1,38 +1,42 @@
-#include "Hit.hh"
+#include "DetectorHit.hh"
 
-Hit::Hit()
+DetectorHit::DetectorHit()
 {
     
 }
 
-Hit::~Hit()
+DetectorHit::~DetectorHit()
 {
     
 }
-~MyHit(){};
-MyHit(const MyHit& right)
+
+DetectorHit::DetectorHit(const DetectorHit& right)
 : G4VHit()
 {
     eDepo      = right.eDepo;
     position   = right.position;
-};
+}
 
-const MyHit& operator=(const MyHit& right)
+
+const DetectorHit& DetectorHit::operator=(const DetectorHit& right)
 {
     eDepo      = right.eDepo;
     position   = right.position;
     return *this;
 }
 
-public:
-void SetEdeposit(G4double iedep){ eDepo = iedep; };
-void SetPosition(G4ThreeVector ipos){ position = ipos; };
-
-G4double GetEdeposit(){ return eDepo; };
-G4ThreeVector GetPosition(){ return position; };
-
-private:
-G4double       eDepo;
-G4ThreeVector  position;
+void DetectorHit::SetEdeposit(G4double iedep)
+{
+    eDepo = iedep;
 };
-typedef G4THitsCollection<MyHit> MyHitsCollection;
+
+void DetectorHit::SetPosition(G4ThreeVector ipos)
+{
+    position = ipos;
+};
+
+G4double DetectorHit::GetEdeposit() const {return eDepo;}
+G4ThreeVector DetectorHit::GetPosition() const {return position;}
+
+
+//typedef G4THitsCollection<MyHit> MyHitsCollection;

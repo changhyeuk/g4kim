@@ -1,38 +1,73 @@
-#ifndef Hit_h
-#define Hit_h 1
+#ifndef DetectorHit_h
+#define DetectorHit_h 1
 
 #include "G4VHit.hh"
 #include "G4THitsCollection.hh"
+#include "G4ThreeVector.hh"
 
-class Hit : public G4VHit
+class DetectorHit : public G4VHit
 {
 public:
-    Hit();
-    ~Hit();
+    DetectorHit();
+    ~DetectorHit();
     
-    Hit(const Hit& right)
-    : G4VHit()
-    {
-        eDepo      = right.eDepo;
-        position   = right.position;
-    };
-    
-    const Hit& operator=(const Hit& right)
-    {
-        eDepo      = right.eDepo;
-        position   = right.position;
-        return *this;
-    }
-    
+    DetectorHit(const DetectorHit& right);
+    const DetectorHit& operator=(const DetectorHit& right);
+
 public:
-    void SetEdeposit(G4double iedep){ eDepo = iedep; };
-    void SetPosition(G4ThreeVector ipos){ position = ipos; };
+    void SetEdeposit(G4double iedep);
+    void SetPosition(G4ThreeVector ipos);
     
-    G4double GetEdeposit(){ return eDepo; };
-    G4ThreeVector GetPosition(){ return position; };
-    
+    G4double GetEdeposit() const;
+    G4ThreeVector GetPosition() const;
+
 private:
     G4double       eDepo;
     G4ThreeVector  position;
 };
-typedef G4THitsCollection<Hit> HitsCollection;
+
+typedef G4THitsCollection<DetectorHit> DetectorHitsCollection;
+
+
+
+
+
+
+
+//============================================================================
+// HIT
+//============================================================================
+//#include "G4VHit.hh"
+//#include "G4THitsCollection.hh"
+//
+//class MyHit : public G4VHit
+//{
+//public:
+//  MyHit(){};
+//  ~MyHit(){};
+//  MyHit(const MyHit& right)
+//    : G4VHit()
+//  {
+//    eDepo      = right.eDepo;
+//    position   = right.position;
+//  };
+//
+//  const MyHit& operator=(const MyHit& right)
+//  {
+//    eDepo      = right.eDepo;
+//    position   = right.position;
+//    return *this;
+//  }
+//
+//public:
+//  void SetEdeposit(G4double iedep){ eDepo = iedep; };
+//  void SetPosition(G4ThreeVector ipos){ position = ipos; };
+//
+//  G4double GetEdeposit(){ return eDepo; };
+//  G4ThreeVector GetPosition(){ return position; };
+//
+//private:
+//  G4double       eDepo;
+//  G4ThreeVector  position;
+//};
+//typedef G4THitsCollection<MyHit> MyHitsCollection;
