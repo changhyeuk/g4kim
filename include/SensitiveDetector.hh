@@ -31,7 +31,7 @@
 #include "G4HCofThisEvent.hh"
 #include "G4Step.hh"
 #include "G4TouchableHistory.hh"
-#include "Hit.hh"
+#include "DetectorHit.hh"
 
 class SensitiveDetector : public G4VSensitiveDetector
 {
@@ -44,7 +44,7 @@ public:
     void EndOfEvent(G4HCofThisEvent* h);
     
 private:
-    MyHitsCollection* hits;
+    DetectorHitsCollection* hits;
 };
 
 #endif

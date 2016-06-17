@@ -36,6 +36,7 @@
 #include "G4HCofThisEvent.hh"
 #include "G4Step.hh"
 #include "G4TouchableHistory.hh"
+#include "G4SDManager.hh"
 
 SensitiveDetector::SensitiveDetector(G4String name)
 :G4VSensitiveDetector(name)
@@ -51,14 +52,14 @@ SensitiveDetector::~SensitiveDetector()
 
 void SensitiveDetector::Initialize(G4HCofThisEvent* hce)
 {
-    hits = new MyHitsCollection(SensitiveDetectorName, collectionName[0]);
+    hits = new DetectorHitsCollection(SensitiveDetectorName, collectionName[0]);
     hce->AddHitsCollection((G4int)G4SDManager::GetSDMpointer()->GetCollectionID(collectionName[0]),hits);
 };
 
 G4bool SensitiveDetector::ProcessHits(G4Step* Astp, G4TouchableHistory* t)
 {
     G4Track* trk = Astp->GetTrack();
-    MyHit* hit = new MyHit;
+    DetectorHit* hit = new DetectorHit;
     hit->SetEdeposit(Astp->GetTotalEnergyDeposit());
     hit->SetPosition(trk->GetPosition());
     hits->insert(hit);

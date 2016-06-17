@@ -28,6 +28,7 @@ private:
 
 typedef G4THitsCollection<DetectorHit> DetectorHitsCollection;
 
+#endif
 
 
 
