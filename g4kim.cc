@@ -2,19 +2,18 @@
 // G4KIM from the g4single file
 //
 
-#include "G4VUserDetectorConstruction.hh"
-#include "G4Material.hh"
-#include "G4Tubs.hh"
-#include "G4LogicalVolume.hh"
-#include "G4PVPlacement.hh"
-#include "G4SDManager.hh"
+//#include "G4VUserDetectorConstruction.hh"
+//#include "G4Material.hh"
+//#include "G4Tubs.hh"
+//#include "G4LogicalVolume.hh"
+//#include "G4PVPlacement.hh"
+//#include "G4SDManager.hh"
 #include "G4GeometryManager.hh"
 #include "G4ThreeVector.hh"
-#include "G4NistManager.hh"
+//#include "G4NistManager.hh"
 #include "G4ios.hh"
 
-G4double wld_r = 10.0 * cm;
-G4double wld_z = 15.0 * cm;
+
 G4double energy = 60 * MeV;
 
 
