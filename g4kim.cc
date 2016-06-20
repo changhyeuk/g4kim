@@ -36,18 +36,21 @@ int main(int argc,char** argv)
 
     // Interface..
     G4UImanager* uiman = G4UImanager::GetUIpointer();
+    
     try
     {
-        G4String cmd ="/control/execute ";
-        if(argc !=1)
-        {
-            cmd.append("macro/vis.mac");
-        }
-        else
+     G4String cmd = "/control/execute ";
+        if (argc!= 1) // batch mode
         {
             cmd.append(argv[1]);
         }
-        uiman -> ApplyCommand(cmd);
+        else
+        {
+            cmd.append("macro/vis.mac");
+        }
+        G4cout<<" cmd final : "<<cmd<<G4endl;
+
+        uiman->ApplyCommand(cmd);
     }
     catch(int i)
     {
@@ -59,7 +62,7 @@ int main(int argc,char** argv)
 //    uiman->ApplyCommand("/vis/scene/endOfEventAction accumulate");
 //    uiman->ApplyCommand("/vis/viewer/set/autoRefresh true");
 
-    rman->Initialize();
+    // rman->Initialize();
 
     // Pull the trigger
     // rman->BeamOn(2);

@@ -6,7 +6,13 @@ project(${projname})
 
 # for geant4
 set(libs)
-find_package(Geant4 REQUIRED)
+option(WITH_GEANT4_UIVIS "Build example with Geant4 UI and Vis drivers" ON)
+if(WITH_GEANT4_UIVIS)
+  find_package(Geant4 REQUIRED ui_all vis_all)
+else()
+  find_package(Geant4 REQUIRED)
+endif()
+#find_package(Geant4 REQUIRED)
 include(${Geant4_USE_FILE})
 list(APPEND libs ${Geant4_LIBRARIES})
 

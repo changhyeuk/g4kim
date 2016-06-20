@@ -1,8 +1,8 @@
 /control/verbose 0
 /run/verbose 0
 
-#/vis/open VRML2FILE
-/vis/open OGL 600x600-0+0
+/vis/open VRML2FILE
+#/vis/open OGL 600x600-0+0
 /vis/drawVolume
 /vis/scene/add/trajectories smooth
 /vis/scene/endOfEventAction accumulate
