@@ -20,17 +20,17 @@ PrimaryGeneratorAction::~PrimaryGeneratorAction()
     
 
 void PrimaryGeneratorAction::GeneratePrimaries(G4Event* evt)
-    {
-        G4double wld_zz = 15.0 * cm;
-        G4double energy = energy = 60 * MeV;
-        // pencil beam configuration
-        G4ParticleTable* t = G4ParticleTable::GetParticleTable();
-        gun->SetParticleDefinition(t->FindParticle("proton"));
-        gun->SetParticlePosition(G4ThreeVector(0., 0., -0.5*wld_zz));
-        gun->SetParticleMomentumDirection(G4ThreeVector(0., 0., 1.));
-        gun->SetParticleEnergy(energy);
-        gun->GeneratePrimaryVertex(evt);
-    };
+{
+    G4double wld_zz = 15.0 * cm;
+    G4double energy = energy = 60 * MeV;
+    // pencil beam configuration
+    G4ParticleTable* t = G4ParticleTable::GetParticleTable();
+    gun->SetParticleDefinition(t->FindParticle("proton"));
+    gun->SetParticlePosition(G4ThreeVector(0., 0., -0.5*wld_zz));
+    gun->SetParticleMomentumDirection(G4ThreeVector(0., 0., 1.));
+    gun->SetParticleEnergy(energy);
+    gun->GeneratePrimaryVertex(evt);
+};
     
 //private:
  //   G4ParticleGun* gun;

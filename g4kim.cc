@@ -18,37 +18,37 @@
 
 int main(int argc,char** argv)
 {
-  // Geometry and physics definition
-  G4RunManager * rman = new G4RunManager;
-  rman->SetUserInitialization(new DetectorConstruction);
-  rman->SetUserInitialization(new PhysicsList);
+    // Geometry and physics definition
+    G4RunManager * rman = new G4RunManager;
+    rman->SetUserInitialization(new DetectorConstruction);
+    rman->SetUserInitialization(new PhysicsList);
 
-  // Actions definition
-  rman->SetUserAction(new PrimaryGeneratorAction);
-  rman->SetUserAction(new EventAction);
+    // Actions definition
+    rman->SetUserAction(new PrimaryGeneratorAction);
+    rman->SetUserAction(new EventAction);
 
-  // Visualization
-  G4VisManager* vman = new G4VisExecutive("Quiet");
-  vman->Initialize();
+    // Visualization
+    G4VisManager* vman = new G4VisExecutive("Quiet");
+    vman->Initialize();
 
-  // Interface..
-  G4UImanager* uiman = G4UImanager::GetUIpointer();
-  uiman->ApplyCommand("/vis/open OGL 600x600-0+0");
-  uiman->ApplyCommand("/vis/drawVolume");
-  uiman->ApplyCommand("/vis/scene/add/trajectories smooth");
-  uiman->ApplyCommand("/vis/scene/endOfEventAction accumulate");
-  uiman->ApplyCommand("/vis/viewer/set/autoRefresh true");
+    // Interface..
+    G4UImanager* uiman = G4UImanager::GetUIpointer();
+    uiman->ApplyCommand("/vis/open OGL 600x600-0+0");
+    uiman->ApplyCommand("/vis/drawVolume");
+    uiman->ApplyCommand("/vis/scene/add/trajectories smooth");
+    uiman->ApplyCommand("/vis/scene/endOfEventAction accumulate");
+    uiman->ApplyCommand("/vis/viewer/set/autoRefresh true");
 
-  rman->Initialize();
+    rman->Initialize();
 
-  // Pull the trigger
-  rman->BeamOn(2);
+    // Pull the trigger
+    rman->BeamOn(2);
 
-  delete uiman;
-  delete vman;
-  delete rman;
-  return 0;
- }
+    delete uiman;
+    delete vman;
+    delete rman;
+    return 0;
+}
 
 
 
