@@ -5,7 +5,7 @@
 #include "G4LogicalVolume.hh"
 #include "G4PVPlacement.hh"
 #include "G4SDManager.hh"
-
+#include "SensitiveDetector.hh"
 
 DetectorConstruction::DetectorConstruction()
 {
