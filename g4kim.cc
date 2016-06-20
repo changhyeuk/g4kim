@@ -39,8 +39,14 @@ int main(int argc,char** argv)
     try
     {
         G4String cmd ="/control/execute ";
-        if(argc ==1) cmd.append("macro/vis.mac");
-        else cmd.append(argv[1]);
+        if(argc !=1)
+        {
+            cmd.append("macro/vis.mac");
+        }
+        else
+        {
+            cmd.append(argv[1]);
+        }
         uiman -> ApplyCommand(cmd);
     }
     catch(int i)
@@ -56,7 +62,7 @@ int main(int argc,char** argv)
     rman->Initialize();
 
     // Pull the trigger
-    rman->BeamOn(2);
+    // rman->BeamOn(2);
 
     //delete uiman;
     delete vman;

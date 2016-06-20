@@ -5,7 +5,7 @@
 /vis/open OGL 600x600-0+0
 /vis/drawVolume
 /vis/scene/add/trajectories smooth
-/vis/scene/endOfEventAction accumulate 100
+/vis/scene/endOfEventAction accumulate
 /vis/viewer/set/autoRefresh true
 /vis/filtering/trajectories/create/chargeFilter
 /vis/filtering/trajectories/chargeFilter-0/add +1
@@ -19,7 +19,7 @@
 
 #/ana/result modif 2st
 
-/run/initialize
+#/run/initialize
 
-/run/beamOn 2
+#/run/beamOn 2
 
