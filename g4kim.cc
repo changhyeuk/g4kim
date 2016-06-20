@@ -1,10 +1,13 @@
 //
 // G4KIM from the g4single file
 //
-
+#include <iostream>
 #include "G4RunManager.hh"
 #include "G4UImanager.hh"
+
 #include "G4VisExecutive.hh"
+#include "G4UIExecutive.hh"
+#include "G4UIterminal.hh"
 
 #include "DetectorConstruction.hh"
 #include "PhysicsList.hh"
@@ -28,23 +31,34 @@ int main(int argc,char** argv)
     rman->SetUserAction(new EventAction);
 
     // Visualization
-    G4VisManager* vman = new G4VisExecutive("Quiet");
+    G4VisManager* vman = new G4VisExecutive();
     vman->Initialize();
 
     // Interface..
     G4UImanager* uiman = G4UImanager::GetUIpointer();
-    uiman->ApplyCommand("/vis/open OGL 600x600-0+0");
-    uiman->ApplyCommand("/vis/drawVolume");
-    uiman->ApplyCommand("/vis/scene/add/trajectories smooth");
-    uiman->ApplyCommand("/vis/scene/endOfEventAction accumulate");
-    uiman->ApplyCommand("/vis/viewer/set/autoRefresh true");
+    try
+    {
+        G4String cmd ="/control/execute ";
+        if(argc ==1) cmd.append("macro/vis.mac");
+        else cmd.append(argv[1]);
+        uiman -> ApplyCommand(cmd);
+    }
+    catch(int i)
+    {
+        std::cout<<" macro file name error"<<std::endl;
+    }
+//    uiman->ApplyCommand("/vis/open OGL 600x600-0+0");
+//    uiman->ApplyCommand("/vis/drawVolume");
+//    uiman->ApplyCommand("/vis/scene/add/trajectories smooth");
+//    uiman->ApplyCommand("/vis/scene/endOfEventAction accumulate");
+//    uiman->ApplyCommand("/vis/viewer/set/autoRefresh true");
 
     rman->Initialize();
 
     // Pull the trigger
     rman->BeamOn(2);
 
-    delete uiman;
+    //delete uiman;
     delete vman;
     delete rman;
     return 0;
