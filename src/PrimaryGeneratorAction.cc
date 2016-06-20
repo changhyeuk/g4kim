@@ -14,9 +14,9 @@ PrimaryGeneratorAction::PrimaryGeneratorAction()
 };
 
 PrimaryGeneratorAction::~PrimaryGeneratorAction()
-    {
-        delete gun;
-    };
+{
+    delete gun;
+};
     
 
 void PrimaryGeneratorAction::GeneratePrimaries(G4Event* evt)
@@ -31,7 +31,3 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* evt)
     gun->SetParticleEnergy(energy);
     gun->GeneratePrimaryVertex(evt);
 };
-    
-//private:
- //   G4ParticleGun* gun;
-//};
