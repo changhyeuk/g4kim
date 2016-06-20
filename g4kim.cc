@@ -2,19 +2,56 @@
 // G4KIM from the g4single file
 //
 
-//#include "G4VUserDetectorConstruction.hh"
-//#include "G4Material.hh"
-//#include "G4Tubs.hh"
-//#include "G4LogicalVolume.hh"
-//#include "G4PVPlacement.hh"
-//#include "G4SDManager.hh"
-#include "G4GeometryManager.hh"
-#include "G4ThreeVector.hh"
-//#include "G4NistManager.hh"
-#include "G4ios.hh"
+#include "G4RunManager.hh"
+#include "G4UImanager.hh"
+#include "G4VisExecutive.hh"
+
+#include "DetectorConstruction.hh"
+#include "PhysicsList.hh"
+#include "PrimaryGeneratorAction.hh"
+#include "EventAction.hh"
 
 
-//G4double energy = 60 * MeV;
+//#include "G4GeometryManager.hh"
+//#include "G4ThreeVector.hh"
+//#include "G4ios.hh"
+
+int main(int argc,char** argv)
+{
+  // Geometry and physics definition
+  G4RunManager * rman = new G4RunManager;
+  rman->SetUserInitialization(new DetectorConstruction);
+  rman->SetUserInitialization(new PhysicsList);
+
+  // Actions definition
+  rman->SetUserAction(new PrimaryGeneratorAction);
+  rman->SetUserAction(new EventAction);
+
+  // Visualization
+  G4VisManager* vman = new G4VisExecutive("Quiet");
+  vman->Initialize();
+
+  // Interface..
+  G4UImanager* uiman = G4UImanager::GetUIpointer();
+  uiman->ApplyCommand("/vis/open OGL 600x600-0+0");
+  uiman->ApplyCommand("/vis/drawVolume");
+  uiman->ApplyCommand("/vis/scene/add/trajectories smooth");
+  uiman->ApplyCommand("/vis/scene/endOfEventAction accumulate");
+  uiman->ApplyCommand("/vis/viewer/set/autoRefresh true");
+
+  rman->Initialize();
+
+  // Pull the trigger
+  rman->BeamOn(2);
+
+  delete uiman;
+  delete vman;
+  delete rman;
+  return 0;
+ }
+
+
+
 
 
 //============================================================================
@@ -41,7 +78,7 @@
 //    position   = right.position;
 //    return *this;
 //  }
-//  
+//
 //public:
 //  void SetEdeposit(G4double iedep){ eDepo = iedep; };
 //  void SetPosition(G4ThreeVector ipos){ position = ipos; };
@@ -71,7 +108,7 @@
 // :G4VSensitiveDetector(name)
 //  { collectionName.insert((name+"HC").c_str()); };
 //  ~SensitiveDetector(){};
-//  
+//
 //  void Initialize(G4HCofThisEvent* hce)
 //  {
 //    hits = new MyHitsCollection(SensitiveDetectorName, collectionName[0]);
@@ -103,16 +140,16 @@
 //public:
 //  DetectorConstruction(){};
 //  ~DetectorConstruction(){};
-//  
+//
 //  G4VPhysicalVolume* Construct()
 //  {
-//    G4Material* wld_mat = 
+//    G4Material* wld_mat =
 //      G4NistManager::Instance()->FindOrBuildMaterial("G4_AIR", false);
-//    G4Tubs* s_world = 
+//    G4Tubs* s_world =
 //      new G4Tubs("s_world", 0.0, wld_r, 0.5*wld_z, 0.0, 360.0);
-//    G4LogicalVolume* l_world = 
+//    G4LogicalVolume* l_world =
 //      new G4LogicalVolume(s_world, wld_mat, "l_world",0, 0);
-//    G4PVPlacement* p_world 
+//    G4PVPlacement* p_world
 //      = new G4PVPlacement(0, // rot_mat
 //                          G4ThreeVector(0.,0.,0.), // cnt_pos
 //                          l_world,   // curr_lv
@@ -124,14 +161,14 @@
 //    G4SDManager* SDman = G4SDManager::GetSDMpointer();
 //    SensitiveDetector* sd = new SensitiveDetector("block");
 //    SDman->AddNewDetector(sd);
-//    
-//    G4Material* block_mat = 
+//
+//    G4Material* block_mat =
 //      G4NistManager::Instance()->FindOrBuildMaterial("G4_Fe", false);
-//    G4Tubs* s_block = 
+//    G4Tubs* s_block =
 //      new G4Tubs("s_block", 0.0, 0.5*wld_r, 0.25*wld_z, 0.0, 360.0);
-//    G4LogicalVolume* l_block = 
+//    G4LogicalVolume* l_block =
 //      new G4LogicalVolume(s_block, block_mat, "l_block",0, sd);
-//    G4PVPlacement* p_block 
+//    G4PVPlacement* p_block
 //      = new G4PVPlacement(0, // rot_mat
 //                          G4ThreeVector(0.,0.,0.), // cnt_pos
 //                          l_block,   // curr_lv
@@ -220,13 +257,13 @@
 //    gun->SetParticlePosition(
 //      G4ThreeVector(0., 0., -0.5*wld_z));
 //    gun->SetParticleMomentumDirection(
-//      G4ThreeVector(0., 0., 1.)); 
+//      G4ThreeVector(0., 0., 1.));
 //    gun->SetParticleEnergy(energy);
 //    gun->GeneratePrimaryVertex(evt);
 //  };
 //
 //private:
-//  G4ParticleGun* gun;  
+//  G4ParticleGun* gun;
 //};
 
 
@@ -263,44 +300,4 @@
 //    }
 //  }
 //};
-//  
-
-#include "G4RunManager.hh"
-#include "G4VisExecutive.hh"
-#include "G4UImanager.hh"
-  
-int main(int argc,char** argv)
-{
-  // Geometry and physics definition
-  G4RunManager * rman = new G4RunManager;
-  rman->SetUserInitialization(new DetectorConstruction);
-  rman->SetUserInitialization(new PhysicsList);
-
-  // Actions definition
-  rman->SetUserAction(new PrimaryGeneratorAction);
-  rman->SetUserAction(new EventAction);
-
-  // Visualization
-  G4VisManager* vman = new G4VisExecutive("Quiet");
-  vman->Initialize();
-
-  // Interface..
-  G4UImanager* uiman = G4UImanager::GetUIpointer();
-  uiman->ApplyCommand("/vis/open OGL 600x600-0+0");
-  uiman->ApplyCommand("/vis/drawVolume");
-  uiman->ApplyCommand("/vis/scene/add/trajectories smooth");
-  uiman->ApplyCommand("/vis/scene/endOfEventAction accumulate");
-  uiman->ApplyCommand("/vis/viewer/set/autoRefresh true");
-
-  rman->Initialize();
-
-  // Pull the trigger
-  rman->BeamOn(2);
-
-  delete uiman;
-  delete vman;
-  delete rman;
-  return 0;
- }
-
-
+//

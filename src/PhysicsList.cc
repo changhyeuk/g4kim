@@ -4,38 +4,40 @@
 #include "G4EmStandardPhysics_option3.hh"
 #include "G4DecayPhysics.hh"
 #include "G4ProductionCuts.hh"
-class PhysicsList: public G4VUserPhysicsList
+#include "PhysicsList.hh"
+
+
+PhysicsList::PhysicsList():G4VUserPhysicsList()
 {
-public:
-    PhysicsList()
-    {
-        emPhys    = new G4EmStandardPhysics_option3();
-        decayPhys = new G4DecayPhysics();
-    };
-    ~PhysicsList()
-    {
-        delete decayPhys;
-        delete emPhys;
-    };
+    emPhys    = new G4EmStandardPhysics_option3();
+    decayPhys = new G4DecayPhysics();
+}
+
+PhysicsList::~PhysicsList()
+{
+    delete decayPhys;
+    delete emPhys;
+}
     
-protected:
-    G4EmStandardPhysics_option3* emPhys;            //E.M.
-    G4DecayPhysics*              decayPhys;         //Decay
-    
-    // Construct particle and physics
-    void ConstructParticle()
-    {
-        decayPhys->ConstructParticle();
-    };
-    void ConstructProcess()
-    {
-        AddTransportation();
-        decayPhys->ConstructProcess();
-        emPhys->ConstructProcess();
-    };
-    void SetCuts()
-    {
-        SetCutsWithDefault();
-        DumpCutValuesTable();
-    };
-};
+//    G4EmStandardPhysics_option3* emPhys;            //E.M.
+//    G4DecayPhysics*              decayPhys;         //Decay
+
+// Construct particle and physics
+void PhysicsList::ConstructParticle()
+{
+    decayPhys->ConstructParticle();
+}
+
+void PhysicsList::ConstructProcess()
+{
+    AddTransportation();
+    decayPhys->ConstructProcess();
+    emPhys->ConstructProcess();
+}
+
+void PhysicsList::SetCuts()
+{
+    SetCutsWithDefault();
+    DumpCutValuesTable();
+}
+
