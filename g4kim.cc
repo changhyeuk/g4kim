@@ -48,8 +48,7 @@ int main(int argc,char** argv)
         {
             cmd.append("macro/vis.mac");
         }
-        G4cout<<" cmd final : "<<cmd<<G4endl;
-
+        
         uiman->ApplyCommand(cmd);
     }
     catch(int i)
