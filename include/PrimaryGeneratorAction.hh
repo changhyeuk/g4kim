@@ -8,6 +8,8 @@
 #include "G4ParticleDefinition.hh"
 #include "Randomize.hh"
 
+class PrimaryGeneratorMessenger;
+
 class PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
 {
 public:
@@ -16,9 +18,12 @@ public:
     
 public:
     void GeneratePrimaries(G4Event* );
+    void SetRandSeed(std::string iRandSeed);
     
 private:
-    G4ParticleGun* gun;  
+    G4ParticleGun* gun;
+    PrimaryGeneratorMessenger* pgm;
+    G4String RandSeed;
 };
 
 #endif

@@ -1,4 +1,6 @@
 #include "PrimaryGeneratorAction.hh"
+#include "PrimaryGeneratorMessenger.hh"
+
 #include "G4VUserPrimaryGeneratorAction.hh"
 #include "G4ParticleGun.hh"
 #include "G4Event.hh"
@@ -10,17 +12,21 @@
 
 PrimaryGeneratorAction::PrimaryGeneratorAction()
 {
+    pgm = new PrimaryGeneratorMessenger(this);
     gun = new G4ParticleGun(1);
 };
 
 PrimaryGeneratorAction::~PrimaryGeneratorAction()
 {
+    delete pgm;
     delete gun;
 };
     
 
 void PrimaryGeneratorAction::GeneratePrimaries(G4Event* evt)
 {
+    G4cout<<" PGM : "<< RandSeed <<G4endl;
+    
     G4double wld_zz = 15.0 * cm;
     G4double energy = energy = 60 * MeV;
     // pencil beam configuration
@@ -31,3 +37,8 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* evt)
     gun->SetParticleEnergy(energy);
     gun->GeneratePrimaryVertex(evt);
 };
+
+void PrimaryGeneratorAction::SetRandSeed(std::string iRandSeed)
+{
+    RandSeed=iRandSeed;
+}
