@@ -81,10 +81,10 @@ void PrimaryGeneratorMessenger::SetNewValue(G4UIcommand* icmd, G4String istr)
     {
         G4cout<<" Messenger file : "<<beam_gauss_Xabe->GetNew3VectorValue(istr)<<G4endl;
         ga->SetBeamEmittX(beam_gauss_Xabe->GetNew3VectorValue(istr));
-//        std::vector<double> xabe = garam::ssplit_to_doubles(istr);
-//        binfo.SetXabe(xabe[0],
-//                      xabe[1] * m, //(* mm / mrad)
-//                      xabe[2] * mm * mrad);
+        std::vector<double> xabe = ckim::ssplit_to_doubles(istr);
+        binfo.SetXabe(xabe[0],
+                      xabe[1] * m, //(* mm / mrad)
+                      xabe[2] * mm * mrad);
     }
 //
 //    else if (icmd == beam_gauss_yabe)
