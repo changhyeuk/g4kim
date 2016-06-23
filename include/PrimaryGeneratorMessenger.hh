@@ -26,14 +26,11 @@ private:
     PrimaryGeneratorAction*    ga;
 
     G4UIdirectory*             beam;
-//    G4UIcmdWithAString*        beam_pencil;
-//    
-//    G4UIdirectory*             beam_gauss;
-//    
+
 //    G4UIcmdWithAString*        beam_gauss_xe;
 //    G4UIcmdWithAString*        beam_gauss_ye;
 //    
-//    G4UIcmdWith3Vector*        beam_gauss_xabe;
+    G4UIcmdWith3Vector*        beam_gauss_Xabe;
 //    G4UIcmdWith3Vector*        beam_gauss_yabe;
 //    
 //    G4UIcmdWithAString*        beam_energy_esratio;

@@ -17,19 +17,19 @@ PrimaryGeneratorMessenger::PrimaryGeneratorMessenger(
 {
     beam = new G4UIdirectory("/beam/");
     beam->SetGuidance("set paramters of beam");
-    
+
 //    beam_gauss_xe = new G4UIcmdWithAString("/beam/gauss/xe",this);
 //    beam_gauss_xe->SetGuidance("x[mm] xp[mrad]");
 //    beam_gauss_xe->AvailableForStates(G4State_PreInit);
-//    
+//
 //    beam_gauss_ye = new G4UIcmdWithAString("/beam/gauss/ye",this);
 //    beam_gauss_ye->SetGuidance("y[mm] yp[mrad]");
 //    beam_gauss_ye->AvailableForStates(G4State_PreInit);
 //    
-//    beam_gauss_xabe = new G4UIcmdWith3Vector("/beam/gauss/xabe",this);
-//    beam_gauss_xabe->SetGuidance("alpx[-] betx[m] emitx[pi.mm.mrad]");
-//    beam_gauss_xabe->AvailableForStates(G4State_PreInit);
-//    
+    beam_gauss_Xabe = new G4UIcmdWith3Vector("/beam/gauss/Xabe",this);
+    beam_gauss_Xabe->SetGuidance("AlphaX[-] BetaX[m] EmittanceX [pi.mm.mrad]");
+    beam_gauss_Xabe->AvailableForStates(G4State_PreInit);
+//
 //    beam_gauss_yabe = new G4UIcmdWith3Vector("/beam/gauss/yabe",this);
 //    beam_gauss_yabe->SetGuidance("alpy[-] bety[m] emity[pi.mm.mrad]");
 //    beam_gauss_yabe->AvailableForStates(G4State_PreInit);
@@ -77,14 +77,16 @@ void PrimaryGeneratorMessenger::SetNewValue(G4UIcommand* icmd, G4String istr)
 //        binfo.SetYYe(yyp[0] * mm, yyp[1] * mm * mrad);
 //    }
 //    
-//    else if (icmd == beam_gauss_xabe)
-//    {
+    if (icmd == beam_gauss_Xabe)
+    {
+        G4cout<<" Messenger file : "<<beam_gauss_Xabe->GetNew3VectorValue(istr)<<G4endl;
+        ga->SetBeamEmittX(beam_gauss_Xabe->GetNew3VectorValue(istr));
 //        std::vector<double> xabe = garam::ssplit_to_doubles(istr);
 //        binfo.SetXabe(xabe[0],
 //                      xabe[1] * m, //(* mm / mrad)
 //                      xabe[2] * mm * mrad);
-//    }
-//    
+    }
+//
 //    else if (icmd == beam_gauss_yabe)
 //    {
 //        std::vector<double> yabe = garam::ssplit_to_doubles(istr);
@@ -105,10 +107,11 @@ void PrimaryGeneratorMessenger::SetNewValue(G4UIcommand* icmd, G4String istr)
 //        binfo.SetEnergyAndMomentumRatio(e_ms[0] * MeV, e_ms[1]);
 //    }
     
-    if (icmd == beam_rseed)
+    else if (icmd == beam_rseed)
     {
         G4cout<<" Messenger file : "<<beam_rseed->GetNewIntValue(istr)<<G4endl;
-        ga->SetRandSeed(istr);
+        //ga->SetRandSeed(istr);
+        ga -> SetRandSeed(beam_rseed->GetNewIntValue(istr));
         //CLHEP::HepRandom::setTheSeed(beam_rseed->GetNewIntValue(istr));
     }
 }

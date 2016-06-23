@@ -25,7 +25,8 @@ PrimaryGeneratorAction::~PrimaryGeneratorAction()
 
 void PrimaryGeneratorAction::GeneratePrimaries(G4Event* evt)
 {
-    G4cout<<" PGM : "<< RandSeed <<G4endl;
+    G4cout<<" RandSeed    : "<< RandSeed <<" Times : "<< RandSeed * 3<<G4endl;
+    G4cout<<" Emittance X : "<< BeamEmittX <<G4endl;
     
     G4double wld_zz = 15.0 * cm;
     G4double energy = energy = 60 * MeV;
@@ -38,7 +39,12 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* evt)
     gun->GeneratePrimaryVertex(evt);
 };
 
-void PrimaryGeneratorAction::SetRandSeed(std::string iRandSeed)
+void PrimaryGeneratorAction::SetRandSeed(G4int iRandSeed)
 {
     RandSeed=iRandSeed;
+}
+
+void PrimaryGeneratorAction::SetBeamEmittX(G4ThreeVector iBeamEmittX)
+{
+    BeamEmittX = iBeamEmittX;
 }
