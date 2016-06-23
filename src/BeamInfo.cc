@@ -88,7 +88,7 @@ double BeamInfo::MeanEnergy() const {return e_mean;}
 double BeamInfo::EsRatio() const {return es_ratio;}
 
 //=============================================================================
-double BeamInfo::MsRatio() const {return garam::dpop(e_mean, es_ratio);}
+double BeamInfo::MsRatio() const {return ckim::dpop(e_mean, es_ratio);}
 
 //=============================================================================
 double BeamInfo::Slopx() const {return -alpx / betx;}
@@ -147,5 +147,5 @@ void BeamInfo::SetEnergyAndMomentumRatio(const double ie_mean,
                                          const double ies_ratio)
 {
     e_mean = ie_mean;
-    es_ratio = garam::dwow(e_mean, ies_ratio);
+    es_ratio = ckim::dwow(e_mean, ies_ratio);
 }

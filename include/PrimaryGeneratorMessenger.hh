@@ -2,6 +2,7 @@
 #define PRIMARYGENERATORMESSENGER_HH 1
 
 #include "PrimaryGeneratorAction.hh"
+#include "BeamInfo.hh"
 #include "G4UImessenger.hh"
 #include "G4RotationMatrix.hh"
 #include "G4ThreeVector.hh"
@@ -21,10 +22,13 @@ public:
     
 public:
     void SetNewValue(G4UIcommand* icmd, G4String istr);
+
+public:
+    const BeamInfo& GetBeamInfo() const;
     
 private:
     PrimaryGeneratorAction*    ga;
-
+    BeamInfo                   Binfo;
     G4UIdirectory*             beam;
 
 //    G4UIcmdWithAString*        beam_gauss_xe;
