@@ -18,6 +18,7 @@ public:
     //   set 1. x[mm] xp[mrad] beta[mm/mrad = m] gamma[mrad/mm = m^-1]
     //   set 2. x[m]  xp[rad]  beta[m/rad = m]   gamma[rad/m = m^-1]
     // Common use : emit[mm*mrad]
+    
     double X() const;
     double XInt() const;
     double Xp() const;

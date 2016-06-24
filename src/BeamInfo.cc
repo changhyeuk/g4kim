@@ -1,3 +1,4 @@
+#include <iostream>
 #include "BeamInfo.hh"
 #include "CGlobal.hh"
 

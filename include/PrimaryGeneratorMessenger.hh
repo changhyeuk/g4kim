@@ -35,9 +35,9 @@ private:
 //    G4UIcmdWithAString*        beam_gauss_ye;
 //    
     G4UIcmdWith3Vector*        beam_gauss_Xabe;
-//    G4UIcmdWith3Vector*        beam_gauss_yabe;
-//    
-//    G4UIcmdWithAString*        beam_energy_esratio;
+    G4UIcmdWith3Vector*        beam_gauss_Yabe;
+    G4UIcmdWithAString*        beam_energy_esratio;
+
 //    G4UIcmdWithAString*        beam_energy_msratio;
     G4UIcmdWithAnInteger*      beam_rseed;
     
