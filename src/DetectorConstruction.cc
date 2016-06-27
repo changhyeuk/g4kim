@@ -38,7 +38,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     SDman->AddNewDetector(sd);
 
     G4Material* block_mat =
-    G4NistManager::Instance()->FindOrBuildMaterial("G4_Fe", false);
+    G4NistManager::Instance()->FindOrBuildMaterial("G4_Water", false);
     G4Tubs* s_block = new G4Tubs("s_block", 0.0, 0.5*wld_r, 0.25*wld_z, 0.0, 360.0);
     G4LogicalVolume* l_block = new G4LogicalVolume(s_block, block_mat, "l_block",0, sd);
     G4PVPlacement* p_block = new G4PVPlacement(0, // rot_mat

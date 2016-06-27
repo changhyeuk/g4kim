@@ -10,6 +10,9 @@
 
 class G4EmStandardPhysics_option3;
 class G4DecayPhysics;
+class G4HadronElasticPhysics;
+class G4HadronInelasticQBBC;
+class G4IonQMDPhysics;
 
 class PhysicsList: public G4VUserPhysicsList
 {
@@ -21,11 +24,17 @@ protected:
     
     G4EmStandardPhysics_option3* emPhys;            //E.M.
     G4DecayPhysics*              decayPhys;         //Decay
+    G4HadronElasticPhysics*      hadronElastPhys;   //Hadronic
+    G4HadronInelasticQBBC*       hadronInelastPhys;
+    G4IonQMDPhysics*             hadronFragPhysJQMD;
     
     // Construct particle and physics
     void ConstructParticle();
     void ConstructProcess();
     void SetCuts();
+    
+//protected:
+//    void SetStepLimiter();
     
 };
 
