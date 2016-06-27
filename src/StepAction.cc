@@ -1,5 +1,5 @@
 #include "StepAction.hh"
-#include "AnalysisManager.hh"
+//#include "AnalysisManager.hh"
 
 //===================================================================================
 StepAction::StepAction(){}
