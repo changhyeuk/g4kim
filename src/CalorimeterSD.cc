@@ -1,7 +1,7 @@
 #include "CalorimeterSD.hh"
 #include "CaloHit.hh"
 #include "SensitiveDetector.hh"
-#include "AnalysisManager.hh"
+//#include "AnalysisManager.hh"
 
 #include "G4HCofThisEvent.hh"
 #include "G4Step.hh"
