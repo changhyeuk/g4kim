@@ -13,7 +13,8 @@
 #include "PhysicsList.hh"
 #include "PrimaryGeneratorAction.hh"
 #include "EventAction.hh"
-
+#include "StepAction.hh"
+#include "AnalysisManager.hh"
 
 //#include "G4GeometryManager.hh"
 //#include "G4ThreeVector.hh"
@@ -21,14 +22,16 @@
 
 int main(int argc,char** argv)
 {
+    AnalysisManager::GetInstance(); // singleton initializer
+
     // Geometry and physics definition
     G4RunManager * rman = new G4RunManager;
     rman->SetUserInitialization(new DetectorConstruction);
     rman->SetUserInitialization(new PhysicsList);
-
     // Actions definition
     rman->SetUserAction(new PrimaryGeneratorAction);
     rman->SetUserAction(new EventAction);
+    rman->SetUserAction(new StepAction);
 
     // Visualization
     G4VisManager* vman = new G4VisExecutive();
@@ -55,17 +58,7 @@ int main(int argc,char** argv)
     {
         std::cout<<" macro file name error"<<std::endl;
     }
-//    uiman->ApplyCommand("/vis/open OGL 600x600-0+0");
-//    uiman->ApplyCommand("/vis/drawVolume");
-//    uiman->ApplyCommand("/vis/scene/add/trajectories smooth");
-//    uiman->ApplyCommand("/vis/scene/endOfEventAction accumulate");
-//    uiman->ApplyCommand("/vis/viewer/set/autoRefresh true");
-
-    // rman->Initialize();
-
-    // Pull the trigger
-    // rman->BeamOn(2);
-
+    
     //delete uiman;
     delete vman;
     delete rman;

@@ -64,16 +64,14 @@ void PrimaryGeneratorMessenger::SetNewValue(G4UIcommand* icmd, G4String istr)
     
     if (icmd == beam_gauss_Xabe)
     {
-        G4cout<<" **** istr : "<<istr<<G4endl;
-
+    
         //ga->SetBeamEmittX(beam_gauss_Xabe->GetNew3VectorValue(istr));
         std::vector<double> xabe = ckim::ssplit_to_doubles(istr);
         Binfo.SetXabe(xabe[0],
                       xabe[1] * m, //(* mm / mrad)
                       xabe[2] * mm * mrad);
         //G4cout<<" Messenger file : "<<beam_gauss_Xabe->GetNew3VectorValue(istr)<<G4endl;
-        G4cout<<" **** xabe : "<<xabe[0]<<G4endl;
-
+    
     }
 
     else if (icmd == beam_gauss_Yabe)
@@ -98,7 +96,7 @@ void PrimaryGeneratorMessenger::SetNewValue(G4UIcommand* icmd, G4String istr)
     
     else if (icmd == beam_rseed)
     {
-        G4cout<<" Messenger file : "<<beam_rseed->GetNewIntValue(istr)<<G4endl;
+        G4cout<<" The Seed number from messenger file : "<<beam_rseed->GetNewIntValue(istr)<<G4endl;
         //ga -> SetRandSeed(beam_rseed->GetNewIntValue(istr));
         CLHEP::HepRandom::setTheSeed(beam_rseed->GetNewIntValue(istr));
     }

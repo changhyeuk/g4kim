@@ -1,7 +1,7 @@
 #include "CalorimeterSD.hh"
 #include "CaloHit.hh"
 #include "SensitiveDetector.hh"
-//#include "AnalysisManager.hh"
+#include "AnalysisManager.hh"
 
 #include "G4HCofThisEvent.hh"
 #include "G4Step.hh"
@@ -13,8 +13,8 @@
 
 //=============================================================================
 CalorimeterSD::CalorimeterSD(const G4String iname,
-                             const G4RotationMatrix& iR,
-                             const G4ThreeVector& iV,
+                             //const G4RotationMatrix& iR,
+                             //const G4ThreeVector& iV,
                              const G4int inx,
                              const G4double ixmin,
                              const G4double ixmax,
@@ -24,9 +24,13 @@ CalorimeterSD::CalorimeterSD(const G4String iname,
                              const G4int inz,
                              const G4double izmin,
                              const G4double izmax)
-:SensitiveDetector(G4String("CalorimeterSD_") + iname, iR, iV)
+:SensitiveDetector(G4String("CalorimeterSD_") + iname)//, iR, iV)
 {
+    G4cout<<"******************** Calorimeter Called ****************************"<<G4endl;
+
     AnalysisManager* ana = AnalysisManager::GetInstance();
+    
+    G4cout<<"*********** Analysis Manager Called *****************"<<G4endl;
     /*
      ana->BookCaloHisto3D(SensitiveDetectorName + "_dose",
      inx, ixmin, ixmax,

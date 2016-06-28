@@ -15,8 +15,8 @@ class CalorimeterSD : public SensitiveDetector
 {
 public:
     CalorimeterSD(const G4String iname,
-                  const G4RotationMatrix& iR,
-                  const G4ThreeVector& iV,
+                  //const G4RotationMatrix& iR,
+                  //const G4ThreeVector& iV,
                   const G4int inx, const G4double ixmin, const G4double ixmax,
                   const G4int iny, const G4double iymin, const G4double iymax,
                   const G4int inz, const G4double izmin, const G4double izmax);

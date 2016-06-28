@@ -61,7 +61,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* evt)
     gun->SetParticleEnergy(energy);
     gun->GeneratePrimaryVertex(evt);
     //ana->FillBullet(xi, xpi, yi, ypi, wi/A);
-    G4cout<<" / "<<xi<<" / "<<yi<<" / "<<wi<<G4endl;
+    //G4cout<<" / "<<xi<<" / "<<yi<<" / "<<wi<<G4endl;
     
 };
 
