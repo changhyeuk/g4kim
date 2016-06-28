@@ -10,7 +10,6 @@
 #include "G4ios.hh"
 
 
-
 //=============================================================================
 CalorimeterSD::CalorimeterSD(const G4String iname,
                              //const G4RotationMatrix& iR,
@@ -26,11 +25,8 @@ CalorimeterSD::CalorimeterSD(const G4String iname,
                              const G4double izmax)
 :SensitiveDetector(G4String("CalorimeterSD_") + iname)//, iR, iV)
 {
-    G4cout<<"******************** Calorimeter Called ****************************"<<G4endl;
-
     AnalysisManager* ana = AnalysisManager::GetInstance();
     
-    G4cout<<"*********** Analysis Manager Called *****************"<<G4endl;
     /*
      ana->BookCaloHisto3D(SensitiveDetectorName + "_dose",
      inx, ixmin, ixmax,
