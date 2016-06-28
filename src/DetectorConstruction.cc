@@ -50,7 +50,6 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
                                                                      100,-wld_x/3,wld_y/3,
                                                                      100,-wld_x/3,wld_y/3,
                                                                      200,-wld_z/3,wld_z/3));
-    G4cout<<"******************** Detector Constructed ****************************"<<G4endl;
     G4PVPlacement* p_block = new G4PVPlacement(0, // rot_mat
                     G4ThreeVector(0.,0.,0.), // cnt_pos
                     l_block,   // curr_lv

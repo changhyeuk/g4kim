@@ -33,9 +33,6 @@ PhysicsList::~PhysicsList()
     delete hadronInelastPhys;
     delete hadronElastPhys;
 }
-    
-//    G4EmStandardPhysics_option3* emPhys;            //E.M.
-//    G4DecayPhysics*              decayPhys;         //Decay
 
 // Construct particle and physics
 
