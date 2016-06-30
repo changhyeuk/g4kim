@@ -63,7 +63,7 @@ void AnalysisManager::Dispose()
 //==========================================================================
 void AnalysisManager::SetFilename(const G4String words)
 {
-    G4cout<<"******* Analysis Set file name  Called *********"<<G4endl;
+    //G4cout<<"******* Analysis Set file name  Called *********"<<G4endl;
 
     // get words
     std::vector<std::string> params = ckim::ssplit(words);
@@ -211,8 +211,6 @@ void AnalysisManager::BookCaloHisto1D(const G4String isdname,
     
     width = izmax - izmin;
     
-    //G4cout<<" Width :"<<width<<G4endl;
-    
     for (G4int i = 0; i < histo_size; ++i)
     {
         if (isdname == histonames1d[i])
@@ -221,6 +219,7 @@ void AnalysisManager::BookCaloHisto1D(const G4String isdname,
             break;
         }
     }
+    
     if (found_sdname)
     {
         //std::cout << "[AM]" << isdname << " already exist!!" << std::endl;
@@ -441,6 +440,8 @@ void AnalysisManager::FillCaloHisto1D(const G4String isdname,
         if (radi <= 150) // 200 )
         {
             histos1d[i_dose]->Fill((hit->GetPosition().z()+width/2),hit->GetEdeposit());
+            
+            //G4cout<<" Fill Histo :"<< hit->GetEdeposit() <<G4endl;
             
             if ( hit->IsPrimary() == 0 )
             {

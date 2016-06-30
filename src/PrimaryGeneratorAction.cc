@@ -1,6 +1,7 @@
 #include "PrimaryGeneratorAction.hh"
 #include "PrimaryGeneratorMessenger.hh"
 #include "CGlobal.hh"
+#include "AnalysisManager.hh"
 
 #include "G4VUserPrimaryGeneratorAction.hh"
 #include "G4ParticleGun.hh"
@@ -22,10 +23,10 @@ PrimaryGeneratorAction::~PrimaryGeneratorAction()
     delete pgm;
     delete gun;
 }
-    
 
 void PrimaryGeneratorAction::GeneratePrimaries(G4Event* evt)
 {
+    AnalysisManager* ana = AnalysisManager::GetInstance();
 
     G4double wld_zz = 15.0 * cm;
     G4double energy = 60 * MeV;
@@ -60,7 +61,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* evt)
     gun->SetParticleMomentumDirection(G4ThreeVector(0., 0., 1.));
     gun->SetParticleEnergy(energy);
     gun->GeneratePrimaryVertex(evt);
-    //ana->FillBullet(xi, xpi, yi, ypi, wi/A);
+    ana->FillBullet(xi, xpi, yi, ypi, wi/A);
     //G4cout<<" / "<<xi<<" / "<<yi<<" / "<<wi<<G4endl;
     
 };

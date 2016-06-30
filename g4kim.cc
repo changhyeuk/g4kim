@@ -59,6 +59,8 @@ int main(int argc,char** argv)
         std::cout<<" macro file name error"<<std::endl;
     }
     
+    AnalysisManager::Dispose();
+
     //delete uiman;
     delete vman;
     delete rman;

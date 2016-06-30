@@ -23,7 +23,17 @@ EventAction::~EventAction(){}
 //=============================================================================
 void EventAction::BeginOfEventAction(const G4Event* e)
 {
-    G4cout << "event: " << e->GetEventID() << G4endl;
+    // Print out the event number at each 10 partilces were generated.
+    // It could be changed by the situation.
+    
+    if ( (e->GetEventID()) % 10 == 0)
+    {
+        G4cout << "event: " << e->GetEventID() << G4endl;
+    }
+    else
+    {
+    
+    }
 }
 
 //=============================================================================
@@ -31,13 +41,19 @@ void EventAction::EndOfEventAction(const G4Event* e)
 {
     // data accumulation
     AnalysisManager* ana = AnalysisManager::GetInstance();
+    
     G4HCofThisEvent* hcte = e->GetHCofThisEvent();
+    
     const G4HCtable* hctable = G4SDManager::GetSDMpointer()->GetHCtable();
+    
     G4String hchead;
+    
     for (int i = 0; i < hctable->entries(); ++i)
     {
         G4String hcname = hctable->GetHCname(i);
-        hchead.assign(hcname, 4);
+
+        hchead.assign(hcname,0,4);
+
         if (hchead == "Trac")
         {
             //ana->FillTrackTuple(hcname, (TrackHitsCollection*) hcte->GetHC(i));

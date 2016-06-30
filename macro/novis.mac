@@ -17,9 +17,9 @@
 /beam/energy_esratio 250 0.1 # dispersion check with pencil beam
 /beam/rseed 3
 
-/ana/result test 1st
+/ana/result test a
 
 /run/initialize
 
-/run/beamOn 100
+/run/beamOn 1000
 

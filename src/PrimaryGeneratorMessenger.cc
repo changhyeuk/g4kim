@@ -96,7 +96,7 @@ void PrimaryGeneratorMessenger::SetNewValue(G4UIcommand* icmd, G4String istr)
     
     else if (icmd == beam_rseed)
     {
-        G4cout<<" The Seed number from messenger file : "<<beam_rseed->GetNewIntValue(istr)<<G4endl;
+        //G4cout<<" The Seed number from messenger file : "<<beam_rseed->GetNewIntValue(istr)<<G4endl;
         //ga -> SetRandSeed(beam_rseed->GetNewIntValue(istr));
         CLHEP::HepRandom::setTheSeed(beam_rseed->GetNewIntValue(istr));
     }

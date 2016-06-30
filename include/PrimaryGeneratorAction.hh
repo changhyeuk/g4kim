@@ -9,9 +9,9 @@
 #include "Randomize.hh"
 
 #include "CGlobal.hh"
-#include "BeamInfo.hh"
 
 class PrimaryGeneratorMessenger;
+class AnalysisManager;
 
 class PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
 {

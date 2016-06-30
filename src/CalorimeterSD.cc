@@ -47,8 +47,10 @@ CalorimeterSD::CalorimeterSD(const G4String iname,
      inz, izmin, izmax);
      
      */
-    G4cout<<" Sensitive Detector Name : "<< SensitiveDetectorName<<G4endl;
-    
+    G4cout<<" "<<G4endl;
+    G4cout<<"*  Sensitive Detector Name :   *"<< SensitiveDetectorName <<G4endl;
+    G4cout<<" "<<G4endl;
+   
     ana->BookCaloHisto1D(SensitiveDetectorName + "_dose_1D",
                          inz, izmin, izmax);
     ana->BookCaloHisto1D(SensitiveDetectorName + "_letP_1D",
@@ -57,7 +59,7 @@ CalorimeterSD::CalorimeterSD(const G4String iname,
                          inz, izmin, izmax);
     ana->BookCaloHisto1D(SensitiveDetectorName + "_letA_1D",
                          inz, izmin, izmax);
-    
+
     // ana->BookCaloTuple(SensitiveDetectorName);
     
     collectionName.insert(SensitiveDetectorName);
@@ -85,9 +87,16 @@ void CalorimeterSD::Initialize(G4HCofThisEvent* ihce)
 G4bool CalorimeterSD::ProcessHits(G4Step* istp, G4TouchableHistory*)
 {
     G4Track* trk = istp->GetTrack();
+    
     CaloHit* hit = new CaloHit();
-    hit->SetPosition(R * (trk->GetPosition() - V));
+    
+    //hit->SetPosition(R * (trk->GetPosition() - V));
+    // The R and V should be consider at the complecx system.
+    
+    hit->SetPosition(trk->GetPosition());
+    
     hit->SetEdeposit(istp->GetTotalEnergyDeposit());
+    
     hit->SetDedx(istp->GetTotalEnergyDeposit()/istp->GetStepLength() /(keV/um));
     // unit of dedx is keV/um
     
