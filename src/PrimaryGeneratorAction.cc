@@ -28,7 +28,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* evt)
 {
     AnalysisManager* ana = AnalysisManager::GetInstance();
 
-    G4double wld_zz = 15.0 * cm;
+    G4double wld_zz = 20.0 * cm;
     G4double energy = 60 * MeV;
     // pencil beam configuration
 //    G4ParticleTable* t = G4ParticleTable::GetParticleTable();
