@@ -10,10 +10,10 @@
 #include "G4ios.hh"
 
 //=============================================================================
-TrackerSD::TrackerSD(const G4String iname,
-                     const G4RotationMatrix& iR,
-                     const G4ThreeVector& iV)
-:SensitiveDetector(G4String("TrackerSD_") + iname, iR, iV)
+TrackerSD::TrackerSD(const G4String iname)//,
+                     //const G4RotationMatrix& iR,
+                     //const G4ThreeVector& iV)
+:SensitiveDetector(G4String("TrackerSD_") + iname)//, iR, iV)
 {
     AnalysisManager* ana = AnalysisManager::GetInstance();
     // 1. 'fullPathName' was used instead of SensitiveDetectorName.

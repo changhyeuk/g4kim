@@ -16,9 +16,9 @@ class G4TouchableHistory;
 class TrackerSD : public SensitiveDetector
 {
 public:
-    TrackerSD(const G4String iname,
-              const G4RotationMatrix& iR,
-              const G4ThreeVector& iV);
+    TrackerSD(const G4String iname);//,
+              //const G4RotationMatrix& iR,
+              //const G4ThreeVector& iV);
     ~TrackerSD();
     
     void   Initialize(G4HCofThisEvent* ihce);
