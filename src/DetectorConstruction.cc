@@ -1,4 +1,112 @@
 #include "DetectorConstruction.hh"
+#include "AnalysisManager.hh"
+#include "CGlobal.hh"
+
+//#include "GridBField.hh"
+//#include "BeamLineComponentManager.hh"
+#include "DriftSpace.hh"
+//#include "QuadrupoleMagnet.hh"
+//#include "DipoleMagnet.hh"
+//#include "Block.hh"
+//#include "Slab.hh"
+//#include "ScanDipoleMagnet.hh"
+//#include "FieldTable.hh"
+//#include "VirtualMonitor.hh"
+//#include "ThinCollimator.hh"
+//#include "RangeShifter.hh"
+//#include "ColiTube.hh"
+//#include "DegTube.hh"
+
+#include "G4Material.hh"
+#include "G4Box.hh"
+#include "G4LogicalVolume.hh"
+#include "G4PVPlacement.hh"
+#include "G4RotationMatrix.hh"
+#include "G4NistManager.hh"
+#include "G4SDManager.hh"
+#include "G4ThreeVector.hh"
+#include "G4VisAttributes.hh"
+#include "G4Colour.hh"
+#include "G4Region.hh"
+
+
+//==========================================================================
+DetectorConstruction::DetectorConstruction()
+:detMsn(0)
+{
+    detMsn = new DetectorMessenger(this);
+}
+
+//==========================================================================
+DetectorConstruction::~DetectorConstruction()
+{
+    delete detMsn;
+    FieldTable::Dispose();
+}
+
+//==========================================================================
+G4VPhysicalVolume* DetectorConstruction::Construct()
+{
+    //G4SDManager::GetSDMpointer()->SetVerboseLevel(2);
+    
+    BeamLineComponentManager bcm(13.0 * MeV, 0.1);
+    bcm.SetBGMaterial("G4_Galactic");
+    
+    DriftSpace    D(0.1 * m);
+    Block         BWindowIN(0.1 * m, 0.00005 * m,"G4_Ti");
+    Block         BWindowOUT(0.00005 * m, 0.00005 * m,"G4_Ti");
+    Block         BAIR(0.01 * m, 0.1 * m,"G4_AIR");
+    ColiTube      BColimator(0.1 * m, 0.1 * m, "G4_GRAPHITE");
+    DegTube       BDegTube(degLength * m,degLength * m,degraderMaterial,degPressure );
+    VirtualMonitor mon(20.0 *cm,20.0 *cm);
+    
+    
+    // ************************ Beam Line *************************
+    
+    bcm.Add(D.New(0.15 * m));
+    bcm.Add(BWindowIN.New(0.00005 * m));
+    bcm.Add(D.New());
+    bcm.Add(BDegTube.New());
+    bcm.Add(D.New());
+    bcm.Add(BWindowOUT.New(0.00005 * m));
+    bcm.Add(D.New());
+    bcm.Add(BColimator.New());
+    bcm.Add(D.New());
+    bcm.Add(mon.New());
+    
+    G4VPhysicalVolume* pv = bcm.GenerateVolume();
+    
+    return pv;
+    
+}
+
+/*
+void DetectorConstruction::SetDegraderMaterial(std::string imaterialname)
+{
+    degraderMaterial=imaterialname;
+}
+
+void DetectorConstruction::SetDegraderLength(double iDegLength)
+{
+    degLength=iDegLength;
+}
+
+void DetectorConstruction::SetDegraderPressure(double iDegPress)
+{
+    degPressure=iDegPress;
+}
+ 
+*/
+
+
+
+
+/*
+ 
+ My old detector construction 
+
+
+#include "DetectorConstruction.hh"
 #include "G4Material.hh"
 #include "G4NistManager.hh"
 #include "G4Tubs.hh"
@@ -59,3 +167,6 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
                     0);        // copy num
 return p_world;
 }
+
+
+*/
