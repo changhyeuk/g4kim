@@ -1,7 +1,7 @@
 #ifndef BeamLineComponentManager_h
 #define BeamLineComponentManager_h 1
 
-#include "globals.hh"
+#include "CGlobal.hh"
 #include "G4LogicalVolume.hh"
 #include "G4VPhysicalVolume.hh"
 #include "G4ThreeVector.hh"

@@ -1,9 +1,10 @@
 #include "DetectorConstruction.hh"
+#include "DetectorMessenger.hh"
 #include "AnalysisManager.hh"
 #include "CGlobal.hh"
 
 //#include "GridBField.hh"
-//#include "BeamLineComponentManager.hh"
+#include "BeamLineComponentManager.hh"
 #include "DriftSpace.hh"
 //#include "QuadrupoleMagnet.hh"
 //#include "DipoleMagnet.hh"
@@ -41,7 +42,7 @@ DetectorConstruction::DetectorConstruction()
 DetectorConstruction::~DetectorConstruction()
 {
     delete detMsn;
-    FieldTable::Dispose();
+    //FieldTable::Dispose();
 }
 
 //==========================================================================
@@ -53,17 +54,20 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     bcm.SetBGMaterial("G4_Galactic");
     
     DriftSpace    D(0.1 * m);
+    /*
     Block         BWindowIN(0.1 * m, 0.00005 * m,"G4_Ti");
     Block         BWindowOUT(0.00005 * m, 0.00005 * m,"G4_Ti");
     Block         BAIR(0.01 * m, 0.1 * m,"G4_AIR");
     ColiTube      BColimator(0.1 * m, 0.1 * m, "G4_GRAPHITE");
     DegTube       BDegTube(degLength * m,degLength * m,degraderMaterial,degPressure );
-    VirtualMonitor mon(20.0 *cm,20.0 *cm);
+    */
+    //VirtualMonitor mon(20.0 *cm,20.0 *cm);
     
     
     // ************************ Beam Line *************************
     
     bcm.Add(D.New(0.15 * m));
+    /*
     bcm.Add(BWindowIN.New(0.00005 * m));
     bcm.Add(D.New());
     bcm.Add(BDegTube.New());
@@ -72,7 +76,8 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     bcm.Add(D.New());
     bcm.Add(BColimator.New());
     bcm.Add(D.New());
-    bcm.Add(mon.New());
+    */
+    //bcm.Add(mon.New());
     
     G4VPhysicalVolume* pv = bcm.GenerateVolume();
     

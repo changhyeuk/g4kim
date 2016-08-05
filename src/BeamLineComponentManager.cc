@@ -83,12 +83,12 @@ G4VPhysicalVolume* BeamLineComponentManager::GenerateVolume()
         Vtmp = (*it)->GetNextPosition(Vtest, Rtest);
         Rtest = Rtmp;
         Vtest = Vtmp;
-        vmax = G4ThreeVector(garam::max(Vtest.x(), vmax.x()),
-                             garam::max(Vtest.y(), vmax.y()),
-                             garam::max(Vtest.z(), vmax.z()));
-        vmin = G4ThreeVector(garam::min(Vtest.x(), vmin.x()),
-                             garam::min(Vtest.y(), vmin.y()),
-                             garam::min(Vtest.z(), vmin.z()));
+        vmax = G4ThreeVector(ckim::max(Vtest.x(), vmax.x()),
+                             ckim::max(Vtest.y(), vmax.y()),
+                             ckim::max(Vtest.z(), vmax.z()));
+        vmin = G4ThreeVector(ckim::min(Vtest.x(), vmin.x()),
+                             ckim::min(Vtest.y(), vmin.y()),
+                             ckim::min(Vtest.z(), vmin.z()));
     }
     G4ThreeVector vmargin(world_margin, world_margin, world_margin);
     G4ThreeVector vabs = vmax - vmin;
@@ -100,7 +100,8 @@ G4VPhysicalVolume* BeamLineComponentManager::GenerateVolume()
     G4ThreeVector V0 = -vcnt;
     G4RotationMatrix R0 = R_init;
     
-    // Magnetic field definition
+    /*
+    // Begin of Magnetic field definition
     //-------------------------------------------------------------------------------
     GlobalGridBField* ggf = new GlobalGridBField();
     G4FieldManager* gfm
@@ -114,6 +115,9 @@ G4VPhysicalVolume* BeamLineComponentManager::GenerateVolume()
     G4MagInt_Driver* intdrv
     = new G4MagInt_Driver(0.001 * mm, stepper, stepper->GetNumberOfVariables());
     gfm->SetChordFinder(new G4ChordFinder(intdrv));
+    // End of Magnetic field definition
+     
+    */
     
     // world volume creation
     G4Box* s_world = new G4Box("s_world",

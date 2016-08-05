@@ -2,7 +2,7 @@
 #define DetectorConstruction_hh_
 
 
-#include "globals.hh"
+#include "CGlobal.hh"
 #include "G4VUserDetectorConstruction.hh"
 
 class DetectorMessenger;
