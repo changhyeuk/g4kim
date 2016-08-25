@@ -18,6 +18,7 @@
 #include "CGlobal.hh"
 #include "BeamLineComponent.hh"
 #include "DriftSpace.hh"
+#include "WaterPhantom.hh"
 //#include "QuadrupoleMagnet.hh"
 //#include "DipoleMagnet.hh"
 //#include "GlobalGridBField.hh"

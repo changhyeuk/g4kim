@@ -16,19 +16,20 @@ enum BLCType
 {
     None = -1,
     Drift,
-    Dipole,
-    ScanDipole,
-    Quadrupole,
-    Solenoid,
-    DummyBlock,
-    DummyColiTube,
-    DummyDegTube,
-    BLSlab,
-    BLRangeShifter,
-    ThinCol,
+    //Dipole,
+    //ScanDipole,
+    //Quadrupole,
+    //Solenoid,
+    //DummyBlock,
+    //DummyColiTube,
+    //DummyDegTube,
+    //BLSlab,
+    //BLRangeShifter,
+    //ThinCol,
     VirtualMon,
     Calo,
-    GasBox //to do
+    BLWaterPhantom
+    //GasBox //to do
 };
 
 

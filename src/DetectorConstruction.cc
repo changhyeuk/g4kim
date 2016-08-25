@@ -13,6 +13,7 @@
 //#include "ScanDipoleMagnet.hh"
 //#include "FieldTable.hh"
 #include "VirtualMonitor.hh"
+#include "WaterPhantom.hh"
 //#include "ThinCollimator.hh"
 //#include "RangeShifter.hh"
 //#include "ColiTube.hh"
@@ -55,7 +56,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     
     DriftSpace    D(0.1 * m);
     VirtualMonitor mon(20.0*cm,20.0*cm);
-
+    WaterPhantom WP(0.3 * m, 0.3 * m, 0.4 * m, "G4_WATER");
     /*
     Block         BWindowIN(0.1 * m, 0.00005 * m,"G4_Ti");
     Block         BWindowOUT(0.00005 * m, 0.00005 * m,"G4_Ti");
@@ -72,6 +73,8 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     bcm.Add(mon.New());
     bcm.Add(D.New(0.15 * m));
     bcm.Add(mon.New());
+    bcm.Add(D.New(0.15 * m));
+    bcm.Add(WP.New());
 
 
     
