@@ -13,9 +13,9 @@
 G4int SensitiveDetector::id = 0;
 
 //=============================================================================
-SensitiveDetector::SensitiveDetector(const G4String iname)//,
-                                     //const G4RotationMatrix& iR,
-                                     //const G4ThreeVector& iV)
+SensitiveDetector::SensitiveDetector(const G4String iname,
+                                     const G4RotationMatrix& iR,
+                                     const G4ThreeVector& iV)
 :G4VSensitiveDetector(iname + "_" + ckim::to_str(++id))
 {
     // invert() of hep rotation matrix class just transpose matrix!

@@ -12,8 +12,8 @@
 
 //=============================================================================
 CalorimeterSD::CalorimeterSD(const G4String iname,
-                             //const G4RotationMatrix& iR,
-                             //const G4ThreeVector& iV,
+                             const G4RotationMatrix& iR,
+                             const G4ThreeVector& iV,
                              const G4int inx,
                              const G4double ixmin,
                              const G4double ixmax,
@@ -23,7 +23,7 @@ CalorimeterSD::CalorimeterSD(const G4String iname,
                              const G4int inz,
                              const G4double izmin,
                              const G4double izmax)
-:SensitiveDetector(G4String("CalorimeterSD_") + iname)//, iR, iV)
+:SensitiveDetector(G4String("CalorimeterSD_") + iname, iR, iV)
 {
     AnalysisManager* ana = AnalysisManager::GetInstance();
     

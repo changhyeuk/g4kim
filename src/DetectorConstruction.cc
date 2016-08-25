@@ -12,7 +12,7 @@
 //#include "Slab.hh"
 //#include "ScanDipoleMagnet.hh"
 //#include "FieldTable.hh"
-//#include "VirtualMonitor.hh"
+#include "VirtualMonitor.hh"
 //#include "ThinCollimator.hh"
 //#include "RangeShifter.hh"
 //#include "ColiTube.hh"
@@ -54,6 +54,8 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     bcm.SetBGMaterial("G4_Galactic");
     
     DriftSpace    D(0.1 * m);
+    VirtualMonitor mon(20.0*cm,20.0*cm);
+
     /*
     Block         BWindowIN(0.1 * m, 0.00005 * m,"G4_Ti");
     Block         BWindowOUT(0.00005 * m, 0.00005 * m,"G4_Ti");
@@ -67,6 +69,12 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     // ************************ Beam Line *************************
     
     bcm.Add(D.New(0.15 * m));
+    bcm.Add(mon.New());
+    bcm.Add(D.New(0.15 * m));
+    bcm.Add(mon.New());
+
+
+    
     /*
     bcm.Add(BWindowIN.New(0.00005 * m));
     bcm.Add(D.New());
@@ -82,10 +90,9 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     G4VPhysicalVolume* pv = bcm.GenerateVolume();
     
     return pv;
-    
 }
 
-/*
+
 void DetectorConstruction::SetDegraderMaterial(std::string imaterialname)
 {
     degraderMaterial=imaterialname;
@@ -101,8 +108,6 @@ void DetectorConstruction::SetDegraderPressure(double iDegPress)
     degPressure=iDegPress;
 }
  
-*/
-
 
 
 

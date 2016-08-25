@@ -1,4 +1,5 @@
 //#include "globals.hh"
+#include "CGlobal.hh"
 #include "CalorimeterSD.hh"
 #include "TrackerSD.hh"
 

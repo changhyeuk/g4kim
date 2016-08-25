@@ -10,9 +10,9 @@
 class SensitiveDetector : public G4VSensitiveDetector
 {
 public:
-    SensitiveDetector(const G4String iname);//,
-                      //const G4RotationMatrix& iR,
-                      //const G4ThreeVector& iV);
+    SensitiveDetector(const G4String iname,
+                      const G4RotationMatrix& iR,
+                      const G4ThreeVector& iV);
     ~SensitiveDetector();
     
 protected:

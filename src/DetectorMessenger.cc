@@ -49,11 +49,15 @@ DetectorMessenger::~DetectorMessenger()
 void DetectorMessenger::SetNewValue(G4UIcommand* icmd, G4String istr)
 {
     if (icmd == degraderMaterial)
+    {
         dc->SetDegraderMaterial(istr);
-    
-    if (icmd == deg_Length)
+    }
+    else if (icmd == deg_Length)
+    {
         dc->SetDegraderLength(deg_Length->GetNewDoubleValue(istr));
-    
-    if (icmd == deg_pressure)
+    }
+    else if (icmd == deg_pressure)
+    {
         dc->SetDegraderPressure(deg_pressure->GetNewDoubleValue(istr));
+    }
 }
