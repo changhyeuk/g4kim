@@ -29,7 +29,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* evt)
 {
     AnalysisManager* ana = AnalysisManager::GetInstance();
     
-    G4double energy = 60 * MeV;
+    // G4double energy = 60 * MeV;
     // pencil beam configuration
     
     // Particle Definition
@@ -41,7 +41,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* evt)
     // Beam Information
     const BeamInfo& beam = pgm->GetBeamInfo();
     G4double xi, xpi, yi, ypi, wi;
-    G4cout<<"xi: "<< xi <<"/ xpi : "<< xpi <<"/ yi : "<<yi<<"/ ypi : "<<ypi<<"/ wi : "<<wi<<G4endl;
+
     const G4ThreeVector gunpos = BeamLineComponentManager::GetInitVector();
     const G4RotationMatrix gunrot = BeamLineComponentManager::GetInitRotationMatrix();
     
@@ -51,17 +51,19 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* evt)
     ypi = G4RandGauss::shoot(beam.Slopy() * yi, beam.YpInt());
     wi  = G4RandGauss::shoot(beam.MeanEnergy() * A,
                              beam.MeanEnergy() * beam.EsRatio() * A);
+
+   // G4cout<<"xi: "<< xi <<"/ xpi : "<< xpi <<"/ yi : "<<yi<<"/ ypi : "<<ypi<<"/ wi : "<<wi<<G4endl;
+
     gun->SetParticlePosition(gunpos + G4ThreeVector(xi, yi, 0.));
     gun->SetParticleMomentumDirection(gunrot * G4ThreeVector(xpi, ypi, 1.));
     gun->SetParticleMomentumDirection(G4ThreeVector(0., 0., 1.));
-    gun->SetParticleEnergy(energy);
+    gun->SetParticleEnergy(wi);
     gun->GeneratePrimaryVertex(evt);
     ana->FillBullet(xi, xpi, yi, ypi, wi/A);
-    //G4cout<<" / "<<xi<<" / "<<yi<<" / "<<wi<<G4endl;
     
 };
 
-//void PrimaryGeneratorAction::SetRandSeed(G4int iRandSeed)
-//{
-//    RandSeed=iRandSeed;
-//}
+void PrimaryGeneratorAction::SetRandSeed(G4int iRandSeed)
+{
+    RandSeed=iRandSeed;
+}

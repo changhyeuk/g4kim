@@ -209,8 +209,14 @@ void AnalysisManager::BookCaloHisto1D(const G4String isdname,
     G4bool found_sdname = false;
     const G4int histo_size = histonames1d.size();
     
+    /*
     width = izmax - izmin;
+    G4cout<<" ======= Analysis Manger ============= "<<G4endl;
+    G4cout<<" "<<G4endl;
+    G4cout<<" inz :"<<inz<<"  izmin: " << izmin<<" izmax:"<<izmax<<G4endl;
     
+    G4cout<<" ======= Analysis Manger ============= "<<G4endl;
+     */
     for (G4int i = 0; i < histo_size; ++i)
     {
         if (isdname == histonames1d[i])
@@ -227,7 +233,7 @@ void AnalysisManager::BookCaloHisto1D(const G4String isdname,
     else
     {
         const char* n_chr = isdname.c_str();
-        TH1D* h1 = new TH1D(n_chr, n_chr,inz,0,width);
+        TH1D* h1 = new TH1D(n_chr, n_chr,inz,izmin,izmax);
         h1->SetXTitle(" Depth in Water [ mm ]");
         h1->GetXaxis()->CenterTitle(1);
         h1->SetYTitle(" Energy Deposition [ a.u. ]");
@@ -439,7 +445,7 @@ void AnalysisManager::FillCaloHisto1D(const G4String isdname,
         
         if (radi <= 150) // 200 )
         {
-            histos1d[i_dose]->Fill((hit->GetPosition().z()+width/2),hit->GetEdeposit());
+            histos1d[i_dose]->Fill(hit->GetPosition().z(),hit->GetEdeposit());
             
             //G4cout<<" Fill Histo :"<< hit->GetEdeposit() <<G4endl;
             
@@ -451,12 +457,20 @@ void AnalysisManager::FillCaloHisto1D(const G4String isdname,
                 }
                 else
                 {
-                    histos1d[i_letP]->Fill(hit->GetPosition().z()+width/2,
+                    histos1d[i_letP]->Fill(hit->GetPosition().z(),
+                                           hit->GetDedx());
+                    histos1d[i_letH]->Fill(hit->GetPosition().z(),
+                                           hit->GetDedx());
+                    histos1d[i_letA]->Fill(hit->GetPosition().z(),
+                                           hit->GetDedx());
+                    /*
+                     histos1d[i_letP]->Fill(hit->GetPosition().z()+width/2,
                                            hit->GetDedx());
                     histos1d[i_letH]->Fill(hit->GetPosition().z()+width/2,
                                            hit->GetDedx());
                     histos1d[i_letA]->Fill(hit->GetPosition().z()+width/2,
                                            hit->GetDedx());
+                     */
                 }
             }
             else

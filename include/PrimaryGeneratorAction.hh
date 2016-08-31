@@ -21,14 +21,14 @@ public:
     
 public:
     void GeneratePrimaries(G4Event* );
-//    void SetRandSeed(G4int iRandSeed);
+    void SetRandSeed(G4int iRandSeed);
 //    void SetBeamEmittX(G4ThreeVector iBeamEmittX);
 //    void SetBeamEmittY(G4ThreeVector iBeamEmittY);
     
 private:
     G4ParticleGun* gun;
     PrimaryGeneratorMessenger* pgm;
-//    G4int RandSeed;
+    G4int RandSeed;
 //    G4ThreeVector BeamEmittX;
 //    G4ThreeVector BeamEmittY;
     

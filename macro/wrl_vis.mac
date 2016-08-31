@@ -14,8 +14,8 @@
 
 /beam/gauss/Xabe  2.0769 20.7231 0.7324
 /beam/gauss/Yabe  2.0769 20.7231 0.7324
-/beam/energy_esratio 400 0.1 # dispersion check with pencil beam
-/beam/rseed 3
+/beam/energy_esratio 300 0.1 # dispersion check with pencil beam
+/beam/rseed 4
 
 /ana/result test 1st
 

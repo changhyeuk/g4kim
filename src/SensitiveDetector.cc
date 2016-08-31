@@ -20,9 +20,9 @@ SensitiveDetector::SensitiveDetector(const G4String iname,
 {
     // invert() of hep rotation matrix class just transpose matrix!
     // because of Det[R] == 1, dont worry about cpu resource.
-    //R = iR;
-    //R.invert();
-    //V = iV;
+    R = iR;
+    R.invert();
+    V = iV;
 }
 
 //=============================================================================

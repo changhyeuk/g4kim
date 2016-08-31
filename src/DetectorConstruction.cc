@@ -73,7 +73,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     bcm.Add(mon.New());
     bcm.Add(D.New(0.4 * m));
     bcm.Add(mon.New());
-    bcm.Add(D.New(0.6 * m));
+    //bcm.Add(D.New(0.6 * m));
     bcm.Add(WP.New());
 
 

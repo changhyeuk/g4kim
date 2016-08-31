@@ -1,7 +1,7 @@
 #ifndef SensitiveDetector_hh_
 #define SensitiveDetector_hh_
 
-//#include "TrackHit.hh"
+#include "TrackHit.hh"
 
 #include "G4ThreeVector.hh"
 #include "G4RotationMatrix.hh"
