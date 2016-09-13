@@ -18,7 +18,17 @@ TrackerSD::TrackerSD(const G4String iname,
     AnalysisManager* ana = AnalysisManager::GetInstance();
     // 1. 'fullPathName' was used instead of SensitiveDetectorName.
     // 2. Only one HC on one SD was used, so HCname and SDname are the same.
+    
     ana->BookTrackTuple(SensitiveDetectorName);
+    /*
+    ana->BookTrackHisto2D(SensitiveDetectorName,
+                          100,  // const G4int inx,
+                          -50, // const G4double ixmin,
+                          50,  // const G4double ixmax,
+                          100,  // const G4int iny,
+                          -50, // const G4double iymin,
+                          50); // const G4double iymax);
+     */
     collectionName.insert(SensitiveDetectorName);
     
     // below must be bottom line of this constructor
@@ -44,30 +54,39 @@ void TrackerSD::Initialize(G4HCofThisEvent* hce)
 G4bool TrackerSD::ProcessHits(G4Step* istp, G4TouchableHistory*)
 {
     G4Track* trk = istp->GetTrack();
-    TrackHit* hit = new TrackHit();
-    G4int PDGencoding = trk->GetDefinition()->GetPDGEncoding();
-    hit->SetParticleId(PDGencoding);
-    hit->SetTrackId(trk->GetTrackID());
-    hit->SetPosition(R * (trk->GetPosition() - V));
-    hit->SetMomentum(R * trk->GetMomentum());
-    hit->SetKineticEnergy(trk->GetKineticEnergy());
-    G4int L = 0, A = 0, Z = 0, I = 0, TMP = 0;
-    if ((PDGencoding > 100000000) || (PDGencoding < -100000000))
-    { // if nuclei
-        TMP = PDGencoding - 1000000000;
-        L = TMP / 10000000;          // N_STRANGE_QUARK
-        TMP = TMP - L * 10000000;
-        Z = TMP / 10000;             // Atomic Mass (=N_BARYON)
-        TMP = TMP - Z * 10000;
-        A = TMP / 10;                // Atomic Number (=N_PROTON)
-        I = TMP - A * 10;            // Isomeric Excitation Energy (1-4 Lv)
-        hit->SetNStrangeQuark(L);
-        hit->SetAtomicNumber(Z);
-        hit->SetAtomicMass(A);
-        hit->SetIsomericExtEnergy(I);
-    }
-    hits->insert(hit);
     
+    G4ParticleDefinition *pDef = trk -> GetDefinition();
+    G4int Aa = pDef -> GetAtomicMass();
+    G4int Zz = pDef -> GetAtomicNumber();
+    
+    if ( Aa == 1 && Zz == 1 )
+    {
+        TrackHit* hit = new TrackHit();
+        G4int PDGencoding = trk->GetDefinition()->GetPDGEncoding();
+        hit->SetParticleId(PDGencoding);
+        hit->SetTrackId(trk->GetTrackID());
+        hit->SetPosition(R * (trk->GetPosition() - V));
+        hit->SetMomentum(R * trk->GetMomentum());
+        hit->SetKineticEnergy(trk->GetKineticEnergy());
+        G4int L = 0, A = 0, Z = 0, I = 0, TMP = 0;
+        if ((PDGencoding > 100000000) || (PDGencoding < -100000000))
+        { // if nuclei
+            TMP = PDGencoding - 1000000000;
+            L = TMP / 10000000;          // N_STRANGE_QUARK
+            TMP = TMP - L * 10000000;
+            Z = TMP / 10000;             // Atomic Mass (=N_BARYON)
+            TMP = TMP - Z * 10000;
+            A = TMP / 10;                // Atomic Number (=N_PROTON)
+            I = TMP - A * 10;            // Isomeric Excitation Energy (1-4 Lv)
+            
+            //G4cout<<" I at hit :"<<I<<G4endl;
+            hit->SetNStrangeQuark(L);
+            hit->SetAtomicNumber(Z);
+            hit->SetAtomicMass(A);
+            hit->SetIsomericExtEnergy(I);
+        }
+        hits->insert(hit);
+    }
     return true;
 }
 

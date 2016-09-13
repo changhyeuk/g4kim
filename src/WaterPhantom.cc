@@ -85,9 +85,9 @@ void WaterPhantom::Generate(const G4RotationMatrix& R0,
     if ( HalfZ == 0.0 ) return;
     G4Box*s_blk = new G4Box("degWaterPhantom",HalfX/2, HalfY/2,HalfZ/2);
     const G4ThreeVector VC = V0 + R0 * ( 0.5 * HalfZ * zhat);
-    G4cout<<" VO: "<<V0<<G4endl;
-    G4cout<<" VC: "<<VC<<G4endl;
-    G4cout<<" HalfZ : "<<HalfZ/2<<G4endl;
+    //G4cout<<" VO: "<<V0<<G4endl;
+    //G4cout<<" VC: "<<VC<<G4endl;
+    //G4cout<<" HalfZ : "<<HalfZ/2<<G4endl;
     //G4LogicalVolume* l_blk = new G4LogicalVolume(s_blk, body_mat, "l_blk");
     G4LogicalVolume* l_blk = new G4LogicalVolume(s_blk,
                                                  body_mat,

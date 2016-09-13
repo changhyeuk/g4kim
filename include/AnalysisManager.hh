@@ -11,7 +11,7 @@ class AnalysisMessenger;
 class PrimaryGeneratorMessenger;
 
 #include "CaloHit.hh"
-//#include "TrackHit.hh"
+#include "TrackHit.hh"
 
 #include "CGlobal.hh"
 #include "G4RotationMatrix.hh"
@@ -88,8 +88,8 @@ public:
                          const G4int inz,
                          const G4double izmin, const G4double izmax);
     // Chang Added
-//    void FillTrackTuple(const G4String isdname, const TrackHitsCollection* hc);
-//    void FillTrackHisto2D(const G4String isdname, const TrackHitsCollection* hc);
+    void FillTrackTuple(const G4String isdname, const TrackHitsCollection* hc);
+    void FillTrackHisto2D(const G4String isdname, const TrackHitsCollection* hc);
     void FillCaloHisto3D(const G4String isdname, const CaloHitsCollection* hc);
     void FillCaloHisto1D(const G4String isdname, const CaloHitsCollection* hc);
     

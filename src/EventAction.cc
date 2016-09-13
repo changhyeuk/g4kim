@@ -26,7 +26,7 @@ void EventAction::BeginOfEventAction(const G4Event* e)
     // Print out the event number at each 10 partilces were generated.
     // It could be changed by the situation.
     
-    if ( (e->GetEventID()) % 10 == 0)
+    if ( (e->GetEventID()) % 100 == 0)
     {
         G4cout << "event: " << e->GetEventID() << G4endl;
     }
@@ -56,7 +56,7 @@ void EventAction::EndOfEventAction(const G4Event* e)
 
         if (hchead == "Trac")
         {
-            //ana->FillTrackTuple(hcname, (TrackHitsCollection*) hcte->GetHC(i));
+            ana->FillTrackTuple(hcname, (TrackHitsCollection*) hcte->GetHC(i));
             //ana->FillTrackHisto2D(hcname, (TrackHitsCollection*) hcte->GetHC(i));
             
         }

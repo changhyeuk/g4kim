@@ -130,6 +130,8 @@ void AnalysisManager::BookTrackHisto2D(const G4String isdname,
                                        const G4double iymin,
                                        const G4double iymax)
 {
+    G4cout<<" Book Track Histo 2D Called "<<G4endl;
+    
     G4bool found_sdname = false;
     const G4int histo_size = histonames2d.size();
     for (G4int i = 0; i < histo_size; ++i)
@@ -208,15 +210,7 @@ void AnalysisManager::BookCaloHisto1D(const G4String isdname,
     // find tuple on existing list
     G4bool found_sdname = false;
     const G4int histo_size = histonames1d.size();
-    
-    /*
-    width = izmax - izmin;
-    G4cout<<" ======= Analysis Manger ============= "<<G4endl;
-    G4cout<<" "<<G4endl;
-    G4cout<<" inz :"<<inz<<"  izmin: " << izmin<<" izmax:"<<izmax<<G4endl;
-    
-    G4cout<<" ======= Analysis Manger ============= "<<G4endl;
-     */
+
     for (G4int i = 0; i < histo_size; ++i)
     {
         if (isdname == histonames1d[i])
@@ -254,43 +248,48 @@ void AnalysisManager::FillBullet(const G4double ix, const G4double ixp,
 }
 
 //==========================================================================
-//void AnalysisManager::FillTrackTuple(const G4String isdname,
-//                                     const TrackHitsCollection* hc)
-//{
-//    G4bool found_sdname = false;
-//    const G4int tuple_size = tuplenames.size();
-//    G4int i = 0;
-//    for (; i < tuple_size; ++i)
-//    {
-//        if (isdname == tuplenames[i])
-//        {
-//            found_sdname = true;
-//            break;
-//        }
-//    }
-//    if (!found_sdname) return;
-//    // tuples[i] is the one we've found
-//    
-//    std::vector<TrackHit*>* hits = hc->GetVector();
-//    for (std::vector<TrackHit*>::iterator it = hits->begin();
-//         it != hits->end();
-//         ++it)
-//    {
-//        tuples[i]->Fill((*it)->GetParticleId(),
-//                        (*it)->GetNStrangeQuark(),
-//                        (*it)->GetAtomicNumber(),
-//                        (*it)->GetAtomicMass(),
-//                        (*it)->GetIsomericExtEnergy(),
-//                        (*it)->GetTrackId(),
-//                        (*it)->GetPosition().x(),
-//                        (*it)->GetPosition().y(),
-//                        (*it)->GetPosition().z(),
-//                        (*it)->GetMomentum().x(),
-//                        (*it)->GetMomentum().y(),
-//                        (*it)->GetMomentum().z(),
-//                        (*it)->GetKineticEnergy());
-//    }
-//}
+void AnalysisManager::FillTrackTuple(const G4String isdname,
+                                     const TrackHitsCollection* hc)
+{
+    
+    G4bool found_sdname = false;
+    const G4int tuple_size = tuplenames.size();
+    G4int i = 0;
+    for (; i < tuple_size; ++i)
+    {
+        if (isdname == tuplenames[i])
+        {
+            found_sdname = true;
+            break;
+        }
+    }
+    if (!found_sdname) return;
+    // tuples[i] is the one we've found
+    
+    std::vector<TrackHit*>* hits = hc->GetVector();
+    for (std::vector<TrackHit*>::iterator it = hits->begin();
+         it != hits->end();
+         ++it)
+    {
+        //G4cout<<" ID "<< (*it)->GetParticleId()<<G4endl;
+        //G4cout<<" A "<< (*it)->GetAtomicMass()<<G4endl;
+        //G4cout<<" Z "<< (*it)->GetAtomicNumber()<<G4endl;
+
+        tuples[i]->Fill((*it)->GetParticleId(),
+                        (*it)->GetNStrangeQuark(),
+                        (*it)->GetAtomicNumber(),
+                        (*it)->GetAtomicMass(),
+                        (*it)->GetIsomericExtEnergy(),
+                        (*it)->GetTrackId(),
+                        (*it)->GetPosition().x(),
+                        (*it)->GetPosition().y(),
+                        (*it)->GetPosition().z(),
+                        (*it)->GetMomentum().x(),
+                        (*it)->GetMomentum().y(),
+                        (*it)->GetMomentum().z(),
+                        (*it)->GetKineticEnergy());
+    }
+}
 
 //==========================================================================
 void AnalysisManager::FillCaloHisto3D(const G4String isdname,
@@ -480,30 +479,30 @@ void AnalysisManager::FillCaloHisto1D(const G4String isdname,
         {}
     }
 }
+
 //==========================================================================
-//void AnalysisManager::FillTrackHisto2D(const G4String isdname, const TrackHitsCollection *hc)
-//{
-//    G4bool found_sdname = false;
-//    const G4int histo_size = histonames2d.size();
-//    G4int i = 0;
-//    for (; i < histo_size; ++i)
-//    {
-//        if (isdname == histonames2d[i])
-//        {
-//            found_sdname = true;
-//            break;
-//        }
-//    }
-//    if (!found_sdname) return;
-//    // tuples[i] is the one we've found
-//    
-//    std::vector<TrackHit*>* hits = hc->GetVector();
-//    for (std::vector<TrackHit*>::iterator it = hits->begin();
-//         it != hits->end();  
-//         ++it)
-//    {
-//        TrackHit* hit = *it;
-//        histos2d[i]->Fill(hit->GetPosition().x(),hit->GetPosition().y());
-//    }
-//    
-//}
+void AnalysisManager::FillTrackHisto2D(const G4String isdname, const TrackHitsCollection *hc)
+{
+    G4bool found_sdname = false;
+    const G4int histo_size = histonames2d.size();
+    G4int i = 0;
+    for (; i < histo_size; ++i)
+    {
+        if (isdname == histonames2d[i])
+        {
+            found_sdname = true;
+            break;
+        }
+    }
+    if (!found_sdname) return;
+    // tuples[i] is the one we've found
+    
+    std::vector<TrackHit*>* hits = hc->GetVector();
+    for (std::vector<TrackHit*>::iterator it = hits->begin();
+         it != hits->end();
+         ++it)
+    {
+        TrackHit* hit = *it;
+        histos2d[i]->Fill(hit->GetPosition().x(),hit->GetPosition().y());
+    }
+}
