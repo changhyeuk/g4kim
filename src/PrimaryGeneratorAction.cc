@@ -29,7 +29,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* evt)
 {
     AnalysisManager* ana = AnalysisManager::GetInstance();
     
-    // G4double energy = 60 * MeV;
+    // G4double energy = 13 * MeV; For the Be
     // pencil beam configuration
     
     // Particle Definition
