@@ -12,14 +12,14 @@
 
 ###/geant4e/limits/stepLength 1.0 mm
 
-#/beam/gauss/xabe  2.0769 20.7231 0.7324
-#/beam/gauss/yabe  2.0769 20.7231 0.7324
-#/beam/energy_msratio 400 0.01 # dispersion check with pencil beam
-#/beam/rseed 1
+/beam/gauss/xabe  2.0769 20.7231 0.7324
+/beam/gauss/yabe  2.0769 20.7231 0.7324
+/beam/energy_msratio 400 0.01 # dispersion check with pencil beam
+/beam/rseed 1
 
-#/ana/result modif 2st
+/ana/result modif 2st
 
-#/run/initialize
+/run/initialize
 
-#/run/beamOn 2
+/run/beamOn 2
 
