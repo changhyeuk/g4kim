@@ -28,7 +28,8 @@ enum BLCType
     //ThinCol,
     VirtualMon,
     Calo,
-    BLWaterPhantom
+    BLWaterPhantom,
+    BLBeTarget
     //GasBox //to do
 };
 
