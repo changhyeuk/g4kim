@@ -47,7 +47,7 @@ CalorimeterSD::CalorimeterSD(const G4String iname,
      inz, izmin, izmax);
      
      */
-        
+    G4cout<<"inz: "<< inz <<"/ izmin : "<< izmin <<"/ izmax : "<< izmax <<G4endl;
     ana->BookCaloHisto1D(SensitiveDetectorName + "_dose_1D",
                          inz, izmin, izmax);
     ana->BookCaloHisto1D(SensitiveDetectorName + "_letP_1D",

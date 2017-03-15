@@ -52,7 +52,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* evt)
     wi  = G4RandGauss::shoot(beam.MeanEnergy() * A,
                              beam.MeanEnergy() * beam.EsRatio() * A);
 
-   // G4cout<<"xi: "<< xi <<"/ xpi : "<< xpi <<"/ yi : "<<yi<<"/ ypi : "<<ypi<<"/ wi : "<<wi<<G4endl;
+   //G4cout<<"xi: "<< xi <<"/ xpi : "<< xpi <<"/ yi : "<<yi<<"/ ypi : "<<ypi<<"/ wi : "<<wi<<G4endl;
 
     gun->SetParticlePosition(gunpos + G4ThreeVector(xi, yi, 0.));
     gun->SetParticleMomentumDirection(gunrot * G4ThreeVector(xpi, ypi, 1.));

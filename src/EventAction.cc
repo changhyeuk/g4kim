@@ -26,7 +26,7 @@ void EventAction::BeginOfEventAction(const G4Event* e)
     // Print out the event number at each 10 partilces were generated.
     // It could be changed by the situation.
     
-    if ( (e->GetEventID()) % 100 == 0)
+    if ( (e->GetEventID()) % 1000 == 0)
     {
         G4cout << "event: " << e->GetEventID() << G4endl;
     }
