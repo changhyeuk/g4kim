@@ -92,6 +92,11 @@ G4bool CalorimeterSD::ProcessHits(G4Step* istp, G4TouchableHistory*)
     hit->SetDedx(istp->GetTotalEnergyDeposit()/istp->GetStepLength() /(keV/um));
     // unit of dedx is keV/um
     
+    
+    //G4float Edpo = istp->GetTotalEnergyDeposit();
+    //G4cout << " Energy : " <<Edpo / (joule) <<" Joule "<<G4endl;
+    //G4float T_E = T_E + Edpo;
+    
     // Chang Added
     G4ParticleDefinition *particleDef = trk->GetDefinition();
     G4String particleName = particleDef->GetParticleName();

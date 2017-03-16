@@ -39,6 +39,7 @@ private:
     G4String                filename;
     TFile*                  aresult;
     TNtuple*                bullets;
+    G4float                 T_en;
     
     
     G4double width;
