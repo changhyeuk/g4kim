@@ -447,9 +447,9 @@ void AnalysisManager::FillCaloHisto1D(const G4String isdname,
             histos1d[i_dose]->Fill(hit->GetPosition().z(),hit->GetEdeposit());
             
             G4float tempe = hit->GetEdeposit();
-            T_en = T_en + tempe;
+            //T_en = T_en + tempe;
             
-            G4cout<< " Total Energy  :"<< T_en / joule <<" joule "<<G4endl;
+            //G4cout<< " Total Energy  :"<< T_en / joule <<" joule "<<G4endl;
             
             if ( hit->IsPrimary() == 0 )
             {

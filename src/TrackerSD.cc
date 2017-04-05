@@ -59,8 +59,11 @@ G4bool TrackerSD::ProcessHits(G4Step* istp, G4TouchableHistory*)
     G4int Aa = pDef -> GetAtomicMass();
     G4int Zz = pDef -> GetAtomicNumber();
     
-    if ( Aa == 1 && Zz == 1 )
+   
+    G4cout<<" =========== Virtual Monitor was called ============"<<G4endl;
+    if ( Aa == 1 && Zz == 0 )
     {
+        G4cout<<" Neutron : "<<Aa<<G4endl;
         TrackHit* hit = new TrackHit();
         G4int PDGencoding = trk->GetDefinition()->GetPDGEncoding();
         hit->SetParticleId(PDGencoding);

@@ -55,6 +55,8 @@ void VirtualMonitor::Generate(const G4RotationMatrix& R0,
                               const G4ThreeVector&    V0,
                               G4LogicalVolume*  mother_lv)
 {
+    G4cout<<" Virtual Monitor was called "<<G4endl;
+    
     const G4ThreeVector Vmon = V0 + R0 * (0.5 * mon_t * zhat);
     G4Box* s_mon0 = new G4Box("smon", xsize, ysize, 0.5 * mon_t);
     G4LogicalVolume* l_mon0 = new G4LogicalVolume(s_mon0,
