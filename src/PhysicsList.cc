@@ -8,6 +8,8 @@
 //#include "G4IonBinaryCascadePhysics.hh"
 #include "G4IonQMDPhysics.hh"
 
+#include "HadronPhysicsQGSP_BERT.hh"
+
 #include "G4ProductionCuts.hh"
 #include "PhysicsList.hh"
 
@@ -19,9 +21,11 @@ PhysicsList::PhysicsList():G4VUserPhysicsList()
     
     emPhys    = new G4EmStandardPhysics_option3();
     decayPhys = new G4DecayPhysics();
-    hadronElastPhys    = new G4HadronElasticPhysics();
-    hadronInelastPhys  = new G4HadronInelasticQBBC();
-    hadronFragPhysJQMD = new G4IonQMDPhysics();
+    //hadronElastPhys    = new G4HadronElasticPhysics();
+    //hadronInelastPhys  = new G4HadronInelasticQBBC();
+    //hadronFragPhysJQMD = new G4IonQMDPhysics();
+    
+    hadronPhysicsQGSP_BERT = new HadronPhysicsQGSP_BERT();
     
 }
 
@@ -29,9 +33,10 @@ PhysicsList::~PhysicsList()
 {
     delete decayPhys;
     delete emPhys;
-    delete hadronFragPhysJQMD;
-    delete hadronInelastPhys;
-    delete hadronElastPhys;
+    //delete hadronFragPhysJQMD;
+    //delete hadronInelastPhys;
+    //delete hadronElastPhys;
+    delete hadronPhysicsQGSP_BERT;
 }
 
 // Construct particle and physics
@@ -46,10 +51,13 @@ void PhysicsList::ConstructProcess()
     AddTransportation();
     decayPhys->ConstructProcess();
     emPhys->ConstructProcess();
-    hadronElastPhys->ConstructProcess();
-    hadronInelastPhys->ConstructProcess();
-    hadronFragPhysJQMD->ConstructProcess();
-
+    
+    //hadronElastPhys->ConstructProcess();
+    //hadronInelastPhys->ConstructProcess();
+    //hadronFragPhysJQMD->ConstructProcess();
+    
+    hadronPhysicsQGSP_BERT->ConstructProcess();
+    
 }
 
 // In other code following two functions were used.

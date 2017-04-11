@@ -14,12 +14,12 @@
 
 /beam/gauss/Xabe  2.0769 20.7231 0.7324
 /beam/gauss/Yabe  2.0769 20.7231 0.7324
-/beam/energy_esratio 200 0.001 # dispersion check with pencil beam
-/beam/rseed 3
+/beam/energy_esratio 13 0.001 # dispersion check with pencil beam
+/beam/rseed 1
 
 /ana/result novis novis
 
 /run/initialize
 
-/run/beamOn 100000
+/run/beamOn 10000
 
