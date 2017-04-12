@@ -8,7 +8,7 @@
 //#include "G4IonBinaryCascadePhysics.hh"
 #include "G4IonQMDPhysics.hh"
 
-#include "HadronPhysicsQGSP_BERT.hh"
+#include "HadronPhysicsQGSP_BERT_HP.hh"
 
 #include "G4ProductionCuts.hh"
 #include "PhysicsList.hh"
@@ -25,7 +25,7 @@ PhysicsList::PhysicsList():G4VUserPhysicsList()
     //hadronInelastPhys  = new G4HadronInelasticQBBC();
     //hadronFragPhysJQMD = new G4IonQMDPhysics();
     
-    hadronPhysicsQGSP_BERT = new HadronPhysicsQGSP_BERT();
+    hadronPhysicsQGSP_BERT_HP = new HadronPhysicsQGSP_BERT_HP();
     
 }
 
@@ -36,7 +36,7 @@ PhysicsList::~PhysicsList()
     //delete hadronFragPhysJQMD;
     //delete hadronInelastPhys;
     //delete hadronElastPhys;
-    delete hadronPhysicsQGSP_BERT;
+    delete hadronPhysicsQGSP_BERT_HP;
 }
 
 // Construct particle and physics
@@ -56,7 +56,7 @@ void PhysicsList::ConstructProcess()
     //hadronInelastPhys->ConstructProcess();
     //hadronFragPhysJQMD->ConstructProcess();
     
-    hadronPhysicsQGSP_BERT->ConstructProcess();
+    hadronPhysicsQGSP_BERT_HP->ConstructProcess();
     
 }
 

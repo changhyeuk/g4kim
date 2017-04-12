@@ -103,6 +103,12 @@ G4bool CalorimeterSD::ProcessHits(G4Step* istp, G4TouchableHistory*)
     hit->SetParticleName(particleName);
     G4int isPrimary = istp->GetTrack()->GetParentID();
     hit->SetPrimary(isPrimary);
+    
+    if ( particleName == "neutron")
+    {
+        G4cout<<particleName<< "  isPrimary :"<<isPrimary<<G4endl;
+    }
+    
     G4int PDGencoding = trk->GetDefinition()->GetPDGEncoding();
     hit->SetParticleId(PDGencoding);
     G4int L = 0, A = 0, Z = 0, I = 0, TMP = 0;
