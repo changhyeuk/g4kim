@@ -55,7 +55,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     bcm.SetBGMaterial("G4_Galactic");
     
     DriftSpace    D(0.1 * m);
-    VirtualMonitor mon(30.0*cm,30.0*cm);
+    //VirtualMonitor mon(30.0*cm,30.0*cm);
     WaterPhantom WP(0.03 * m, 0.03 * m, 0.002 * m, "G4_Be");
     /*
     Block         BWindowIN(0.1 * m, 0.00005 * m,"G4_Ti");
@@ -72,7 +72,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     bcm.Add(D.New(0.2 * m));
     bcm.Add(WP.New());
     bcm.Add(D.New(0.2 * m));
-    bcm.Add(mon.New());
+    //bcm.Add(mon.New());
     //bcm.Add(D.New(0.2 * m));
     
     /*
