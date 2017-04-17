@@ -28,7 +28,7 @@ public:
     
 private:
     CaloHitsCollection* hits;
-    
+    G4int N_num;
     // primary or secondary particle can be selected from here!!
     // by implementing filtering method or variable here!!
 };

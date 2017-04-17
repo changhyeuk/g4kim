@@ -106,7 +106,8 @@ G4bool CalorimeterSD::ProcessHits(G4Step* istp, G4TouchableHistory*)
     
     if ( particleName == "neutron")
     {
-        G4cout<<particleName<< "  isPrimary :"<<isPrimary<<G4endl;
+        N_num = N_num+1;
+        G4cout<< particleName<< " is generated as "<<N_num<<G4endl;
     }
     
     G4int PDGencoding = trk->GetDefinition()->GetPDGEncoding();
