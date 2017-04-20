@@ -63,14 +63,16 @@ G4bool TrackerSD::ProcessHits(G4Step* istp, G4TouchableHistory*)
     // G4cout<<" =========== Virtual Monitor was called ============"<<G4endl;
     if ( Aa == 1 && Zz == 0 )
     {
-        //G4cout<<" Neutron : "<<Aa<<G4endl;
+        G4cout<<" Neutron : "<<Aa<<" and "<<Zz<<G4endl;
         TrackHit* hit = new TrackHit();
         G4int PDGencoding = trk->GetDefinition()->GetPDGEncoding();
-        hit->SetParticleId(PDGencoding);
-        hit->SetTrackId(trk->GetTrackID());
-        hit->SetPosition(R * (trk->GetPosition() - V));
-        hit->SetMomentum(R * trk->GetMomentum());
+        //hit->SetParticleId(PDGencoding);
+        //hit->SetTrackId(trk->GetTrackID());
+        //hit->SetPosition(R * (trk->GetPosition() - V));
+        //hit->SetMomentum(R * trk->GetMomentum());
         hit->SetKineticEnergy(trk->GetKineticEnergy());
+        G4double N_energy = trk->GetKineticEnergy();
+        G4cout<<" Energy is "<<N_energy/CLHEP::MeV<<" MeV"<<G4endl;
         G4int L = 0, A = 0, Z = 0, I = 0, TMP = 0;
         if ((PDGencoding > 100000000) || (PDGencoding < -100000000))
         { // if nuclei
@@ -81,12 +83,10 @@ G4bool TrackerSD::ProcessHits(G4Step* istp, G4TouchableHistory*)
             TMP = TMP - Z * 10000;
             A = TMP / 10;                // Atomic Number (=N_PROTON)
             I = TMP - A * 10;            // Isomeric Excitation Energy (1-4 Lv)
-            
-            //G4cout<<" I at hit :"<<I<<G4endl;
-            hit->SetNStrangeQuark(L);
-            hit->SetAtomicNumber(Z);
-            hit->SetAtomicMass(A);
-            hit->SetIsomericExtEnergy(I);
+            //hit->SetNStrangeQuark(L);
+            //hit->SetAtomicNumber(Z);
+            //hit->SetAtomicMass(A);
+            //hit->SetIsomericExtEnergy(I);
         }
         hits->insert(hit);
     }

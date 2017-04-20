@@ -248,6 +248,14 @@ void AnalysisManager::FillBullet(const G4double ix, const G4double ixp,
 }
 
 //==========================================================================
+void AnalysisManager::FillNeutrons(const G4double nni)
+{
+    neutrons->Fill(nni);
+    // do nothing now...
+}
+
+
+//==========================================================================
 void AnalysisManager::FillTrackTuple(const G4String isdname,
                                      const TrackHitsCollection* hc)
 {

@@ -58,7 +58,7 @@ CalorimeterSD::CalorimeterSD(const G4String iname,
                          inz, izmin, izmax);
     
      // ana->BookCaloTuple(SensitiveDetectorName);
-    
+        
     collectionName.insert(SensitiveDetectorName);
     
     // below must be bottom line of this constructor
@@ -81,6 +81,7 @@ void CalorimeterSD::Initialize(G4HCofThisEvent* ihce)
 //=============================================================================
 G4bool CalorimeterSD::ProcessHits(G4Step* istp, G4TouchableHistory*)
 {
+    
     G4Track* trk = istp->GetTrack();
     
     CaloHit* hit = new CaloHit();
@@ -104,11 +105,17 @@ G4bool CalorimeterSD::ProcessHits(G4Step* istp, G4TouchableHistory*)
     G4int isPrimary = istp->GetTrack()->GetParentID();
     hit->SetPrimary(isPrimary);
     
-    if ( particleName == "neutron")
+    
+    /*
+     if ( particleName == "proton")
     {
+        nn = trk->GetKineticEnergy();
         N_num = N_num+1;
-        G4cout<< particleName<< " is generated as "<<N_num<<G4endl;
+        //G4cout<< particleName<< " is generated as "<< nn <<G4endl;
+        
+        //ana->FillNeutrons(nn);
     }
+    */
     
     G4int PDGencoding = trk->GetDefinition()->GetPDGEncoding();
     hit->SetParticleId(PDGencoding);

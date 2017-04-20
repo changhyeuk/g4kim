@@ -14,6 +14,7 @@
 //#include "FieldTable.hh"
 #include "VirtualMonitor.hh"
 #include "WaterPhantom.hh"
+#include "BeTarget.hh"
 //#include "ThinCollimator.hh"
 //#include "RangeShifter.hh"
 //#include "ColiTube.hh"
@@ -56,7 +57,8 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     
     DriftSpace    D(0.1 * m);
     //VirtualMonitor mon(30.0*cm,30.0*cm);
-    WaterPhantom WP(0.03 * m, 0.03 * m, 0.002 * m, "G4_Be");
+    //WaterPhantom WP(0.03 * m, 0.03 * m, 0.002 * m, "G4_Be");
+    BeTarget BeT(0.03 * m, 0.03 * m, 0.002 * m, "G4_Be");
     /*
     Block         BWindowIN(0.1 * m, 0.00005 * m,"G4_Ti");
     Block         BWindowOUT(0.00005 * m, 0.00005 * m,"G4_Ti");
@@ -70,7 +72,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     // ************************ Beam Line *************************
     
     bcm.Add(D.New(0.2 * m));
-    bcm.Add(WP.New());
+    bcm.Add(BeT.New());
     bcm.Add(D.New(0.2 * m));
     //bcm.Add(mon.New());
     //bcm.Add(D.New(0.2 * m));

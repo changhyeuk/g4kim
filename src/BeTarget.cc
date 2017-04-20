@@ -14,6 +14,7 @@
 #include "G4Colour.hh"
 #include "G4Box.hh"
 #include "CalorimeterSD.hh"
+#include "TrackerSD.hh"
 
 #include "CGlobal.hh"
 #include "BeTarget.hh"
@@ -36,7 +37,7 @@ BeTarget::BeTarget(const G4double pX,
     }
     catch (int e)
     {
-        body_mat = G4NistManager::Instance()->FindOrBuildMaterial("G4_WATER", false);
+        body_mat = G4NistManager::Instance()->FindOrBuildMaterial("G4_Be", false);
     }
 }
 
@@ -91,6 +92,7 @@ void BeTarget::Generate(const G4RotationMatrix& R0,
     //G4cout<<" VC: "<<VC<<G4endl;
     //G4cout<<" HalfZ : "<<HalfZ/2<<G4endl;
     //G4LogicalVolume* l_blk = new G4LogicalVolume(s_blk, body_mat, "l_blk");
+    /*
     G4LogicalVolume* l_blk = new G4LogicalVolume(s_blk,
                                                  body_mat,
                                                  "l_blk",
@@ -101,6 +103,13 @@ void BeTarget::Generate(const G4RotationMatrix& R0,
                                                                    150,-HalfX/2,HalfX/2,
                                                                    150,-HalfY/2,HalfY/2,
                                                                    400,-HalfZ/2,HalfZ/2));
+     */
+    G4LogicalVolume* l_blk = new G4LogicalVolume(s_blk,
+                                                 body_mat,
+                                                 "l_blk",
+                                                 0,
+                                                 new TrackerSD("VM", R0, VC));
+    G4cout<<" Be Target Was inserted "<<G4endl;
     
     l_blk->SetVisAttributes(new G4VisAttributes(cGreen));
     G4RotationMatrix* rr = new G4RotationMatrix(R0);

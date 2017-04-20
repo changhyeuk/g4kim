@@ -39,6 +39,7 @@ private:
     G4String                filename;
     TFile*                  aresult;
     TNtuple*                bullets;
+    TNtuple*                neutrons;
     
     G4double width;
     
@@ -64,6 +65,8 @@ public:
     void FillBullet(const G4double ix, const G4double ixp,
                     const G4double iy, const G4double iyp,
                     const G4double iw);
+    
+    void FillNeutrons(const G4double nni);
     
     // booking must be done after registration of sensitive detector.
     // because of s_id searching.

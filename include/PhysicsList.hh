@@ -15,6 +15,7 @@ class G4HadronInelasticQBBC;
 class G4IonQMDPhysics;
 
 //class HadronPhysicsQGSP_BERT_HP;
+//class G4PreCompoundModel;
 
 class PhysicsList: public G4VUserPhysicsList
 {
@@ -29,7 +30,6 @@ protected:
     G4HadronElasticPhysics*      hadronElastPhys;   //Hadronic
     G4HadronInelasticQBBC*       hadronInelastPhys;
     G4IonQMDPhysics*             hadronFragPhysJQMD;
-    //HadronPhysicsQGSP_BERT_HP*   hadronPhysicsQGSP_BERT_HP;
     
     // Construct particle and physics
     void ConstructParticle();

@@ -11,6 +11,8 @@ class G4Step;
 class G4HCofThisEvent;
 class G4TouchableHistory;
 
+class AnalysisManager;
+
 class CalorimeterSD : public SensitiveDetector
 {
 public:

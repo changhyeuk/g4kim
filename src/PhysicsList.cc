@@ -34,6 +34,7 @@ PhysicsList::~PhysicsList()
     delete hadronInelastPhys;
     delete hadronElastPhys;
     //delete hadronPhysicsQGSP_BERT_HP;
+
 }
 
 // Construct particle and physics
@@ -52,9 +53,7 @@ void PhysicsList::ConstructProcess()
     hadronElastPhys->ConstructProcess();
     hadronInelastPhys->ConstructProcess();
     hadronFragPhysJQMD->ConstructProcess();
-    
-    //hadronPhysicsQGSP_BERT_HP->ConstructProcess();
-    
+
 }
 
 // In other code following two functions were used.
