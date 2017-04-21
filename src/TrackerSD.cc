@@ -63,7 +63,7 @@ G4bool TrackerSD::ProcessHits(G4Step* istp, G4TouchableHistory*)
     // G4cout<<" =========== Virtual Monitor was called ============"<<G4endl;
     if ( Aa == 1 && Zz == 0 )
     {
-        G4cout<<" Neutron : "<<Aa<<" and "<<Zz<<G4endl;
+        //G4cout<<" Neutron : "<<Aa<<" and "<<Zz<<G4endl;
         TrackHit* hit = new TrackHit();
         G4int PDGencoding = trk->GetDefinition()->GetPDGEncoding();
         //hit->SetParticleId(PDGencoding);
@@ -71,8 +71,8 @@ G4bool TrackerSD::ProcessHits(G4Step* istp, G4TouchableHistory*)
         //hit->SetPosition(R * (trk->GetPosition() - V));
         //hit->SetMomentum(R * trk->GetMomentum());
         hit->SetKineticEnergy(trk->GetKineticEnergy());
-        G4double N_energy = trk->GetKineticEnergy();
-        G4cout<<" Energy is "<<N_energy/CLHEP::MeV<<" MeV"<<G4endl;
+        //G4double N_energy = trk->GetKineticEnergy();
+        //G4cout<<" Energy is "<<N_energy/CLHEP::MeV<<" MeV"<<G4endl;
         G4int L = 0, A = 0, Z = 0, I = 0, TMP = 0;
         if ((PDGencoding > 100000000) || (PDGencoding < -100000000))
         { // if nuclei
