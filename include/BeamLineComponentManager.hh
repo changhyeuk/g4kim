@@ -6,6 +6,7 @@
 #include "G4VPhysicalVolume.hh"
 #include "G4ThreeVector.hh"
 #include "G4RotationMatrix.hh"
+#include "G4SystemOfUnits.hh"
 
 class BeamLineComponent;
 class G4Materail;

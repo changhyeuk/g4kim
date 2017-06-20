@@ -6,6 +6,7 @@
 #include "G4UImessenger.hh"
 #include "G4RotationMatrix.hh"
 #include "G4ThreeVector.hh"
+#include "G4SystemOfUnits.hh"
 
 class G4UIdirectory;
 class G4UIcmdWithAString;

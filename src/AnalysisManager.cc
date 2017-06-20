@@ -10,6 +10,7 @@
 #include "G4SDManager.hh"
 #include "G4ThreeVector.hh"
 #include "G4RotationMatrix.hh"
+#include "G4SystemOfUnits.hh"
 
 // for the Root
 #include "TFile.h"

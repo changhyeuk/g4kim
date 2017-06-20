@@ -11,6 +11,7 @@
 #include "G4ParticleDefinition.hh"
 //#include "G4PartilceSource.hh"
 #include "Randomize.hh"
+#include "G4IonTable.hh"
 
 
 PrimaryGeneratorAction::PrimaryGeneratorAction()
@@ -35,7 +36,8 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* evt)
     // Particle Definition
     const G4double Z = 1.0; // 6.0;
     const G4double A = 1.0; // 12.0;
-    G4ParticleDefinition* pdef = G4ParticleTable::GetParticleTable()->FindIon(Z, A, 0, 0);
+    //G4ParticleDefinition* pdef = G4ParticleTable::GetParticleTable()->FindIon(Z, A, 0, 0);
+    G4ParticleDefinition* pdef = G4IonTable::GetIonTable()->GetIon(Z,A,0,0);
     gun->SetParticleDefinition(pdef);
     
     // Beam Information

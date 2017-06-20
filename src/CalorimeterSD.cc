@@ -8,7 +8,7 @@
 #include "G4TouchableHistory.hh"
 #include "G4SDManager.hh"
 #include "G4ios.hh"
-
+#include "G4SystemOfUnits.hh"
 
 //=============================================================================
 CalorimeterSD::CalorimeterSD(const G4String iname,
