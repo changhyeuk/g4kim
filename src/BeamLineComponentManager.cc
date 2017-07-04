@@ -19,6 +19,8 @@
 #include "BeamLineComponent.hh"
 #include "DriftSpace.hh"
 #include "WaterPhantom.hh"
+#include "BeTarget.hh"
+
 //#include "QuadrupoleMagnet.hh"
 //#include "DipoleMagnet.hh"
 //#include "GlobalGridBField.hh"

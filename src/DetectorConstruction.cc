@@ -18,6 +18,7 @@
 //#include "RangeShifter.hh"
 //#include "ColiTube.hh"
 //#include "DegTube.hh"
+#include "BeTarget.hh"
 
 #include "G4Material.hh"
 #include "G4Box.hh"
@@ -56,7 +57,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     
     DriftSpace    D(0.1 * m);
     VirtualMonitor mon(30.0*cm,30.0*cm);
-    BeTarget     BeT(0.3 * m, 0.3 * m, 0.005 * m, "G4_Be");
+    BeTarget BeT(0.3 * m, 0.3 * m, 0.005 * m, "G4_Be");
     WaterPhantom WP(0.3 * m, 0.3 * m, 0.005 * m, "G4_He");
     /*
     Block         BWindowIN(0.1 * m, 0.00005 * m,"G4_Ti");
