@@ -56,7 +56,8 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     
     DriftSpace    D(0.1 * m);
     VirtualMonitor mon(30.0*cm,30.0*cm);
-    WaterPhantom WP(0.3 * m, 0.3 * m, 0.005 * m, "G4_Be");
+    BeTarget     BeT(0.3 * m, 0.3 * m, 0.005 * m, "G4_Be");
+    WaterPhantom WP(0.3 * m, 0.3 * m, 0.005 * m, "G4_He");
     /*
     Block         BWindowIN(0.1 * m, 0.00005 * m,"G4_Ti");
     Block         BWindowOUT(0.00005 * m, 0.00005 * m,"G4_Ti");
@@ -70,9 +71,9 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     // ************************ Beam Line *************************
     
     bcm.Add(D.New(0.2 * m));
+    bcm.Add(BeT.New());
     bcm.Add(WP.New());
-    bcm.Add(D.New(0.2 * m));
-    bcm.Add(mon.New());
+    //bcm.Add(mon.New());
     bcm.Add(D.New(0.2 * m));
     
     /*

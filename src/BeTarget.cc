@@ -36,7 +36,7 @@ BeTarget::BeTarget(const G4double pX,
     }
     catch (int e)
     {
-        body_mat = G4NistManager::Instance()->FindOrBuildMaterial("G4_WATER", false);
+        body_mat = G4NistManager::Instance()->FindOrBuildMaterial("G4_Be", false);
     }
 }
 
