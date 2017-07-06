@@ -17,7 +17,7 @@
 //#include "ThinCollimator.hh"
 //#include "RangeShifter.hh"
 //#include "ColiTube.hh"
-//#include "DegTube.hh"
+#include "DegTube.hh"
 #include "BeTarget.hh" // BeTarget Included 
 
 #include "G4Material.hh"
@@ -59,6 +59,9 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     VirtualMonitor mon(3.0*cm,3.0*cm);
     BeTarget BeT(0.03 * m, 0.03 * m, 0.0005 * m, "G4_Be");
     WaterPhantom WP(0.03 * m, 0.03 * m, 0.01 * m, "G4_He");
+    //DegTube BDegTube(0.01 * m, 0.01 * m,"G4_He",2);
+    DegTube     BDegTube(degLength * m,degLength * m,degraderMaterial,degPressure );
+    std::cout<<" DegLength :"<<degLength<<"    "<<" degPressure :"<< degPressure<<std::endl;
     /*
     Block         BWindowIN(0.1 * m, 0.00005 * m,"G4_Ti");
     Block         BWindowOUT(0.00005 * m, 0.00005 * m,"G4_Ti");
@@ -75,7 +78,8 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     bcm.Add(BeT.New());
     bcm.Add(WP.New());
     bcm.Add(BeT.New());
-    bcm.Add(WP.New());
+    //bcm.Add(WP.New());
+    bcm.Add(BDegTube.New());
     bcm.Add(BeT.New());
     bcm.Add(D.New(0.2 * m));
     
