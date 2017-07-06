@@ -13,6 +13,7 @@
 #include "G4VisAttributes.hh"
 #include "G4Colour.hh"
 #include "G4Box.hh"
+#include "G4Tubs.hh"
 #include "CalorimeterSD.hh"
 
 #include "CGlobal.hh"
@@ -85,7 +86,14 @@ void BeTarget::Generate(const G4RotationMatrix& R0,
                             G4LogicalVolume*  mother_lv )
 {
     if ( HalfZ == 0.0 ) return;
-    G4Box*s_blk = new G4Box("degBeTarget",HalfX/2, HalfY/2,HalfZ/2);
+    
+    //G4Box*s_blk = new G4Box("degBeTarget",HalfX/2, HalfY/2,HalfZ/2);
+    G4Tubs* s_blk = new G4Tubs("degBetarget",
+			       0.,
+			       HalfX/2, // HalfX means Radius
+			       HalfZ/2,
+			       0.,
+			       360.0 * deg);
     const G4ThreeVector VC = V0 + R0 * ( 0.5 * HalfZ * zhat);
     //G4cout<<" VO: "<<V0<<G4endl;
     //G4cout<<" VC: "<<VC<<G4endl;

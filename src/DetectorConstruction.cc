@@ -58,7 +58,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     DriftSpace    D(0.1 * m);
     VirtualMonitor mon(3.0*cm,3.0*cm);
     BeTarget BeT(0.03 * m, 0.03 * m, 0.0005 * m, "G4_Be");
-    WaterPhantom WP(0.03 * m, 0.03 * m, 0.01 * m, "G4_He");
+    //WaterPhantom WP(0.03 * m, 0.03 * m, 0.01 * m, "G4_He");
     //DegTube BDegTube(0.01 * m, 0.01 * m,"G4_He",2);
     DegTube     BDegTube(degLength * m,degLength * m,degraderMaterial,degPressure );
     std::cout<<" DegLength :"<<degLength<<"    "<<" degPressure :"<< degPressure<<std::endl;
@@ -76,7 +76,8 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     
     bcm.Add(D.New(0.2 * m));
     bcm.Add(BeT.New());
-    bcm.Add(WP.New());
+    //bcm.Add(WP.New());
+    bcm.Add(BDegTube.New());
     bcm.Add(BeT.New());
     //bcm.Add(WP.New());
     bcm.Add(BDegTube.New());

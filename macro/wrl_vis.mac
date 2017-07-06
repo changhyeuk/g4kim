@@ -13,8 +13,8 @@
 ###/geant4e/limits/stepLength 1.0 mm
 
 /det/DegraderMaterial G4_He
-/det/DegraderLength   0.01
-/det/GasPressure      5.0
+/det/HeGasLength      0.01
+/det/GasPressure      2.0
 
 /beam/gauss/Xabe  2.0769 20.7231 0.7324
 /beam/gauss/Yabe  2.0769 20.7231 0.7324

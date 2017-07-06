@@ -102,14 +102,14 @@ void DegTube::Generate(const G4RotationMatrix& R0,
     // Geometrical Volume Define
     G4Tubs* s_blk = new G4Tubs("GasDegTubeGas",
                                0.,
-                               26.4 * mm,
+                               15.0 * mm,
                                0.5 * thickness,
                                0.,
                                360.0 * deg);
     const G4ThreeVector VC = V0 + R0 * (0.5 * thickness * zhat);
     G4LogicalVolume* l_blk = new G4LogicalVolume(s_blk, body_mat, "l_blk");
-    l_blk->SetVisAttributes(G4VisAttributes::Invisible);
-    //l_blk->SetVisAttributes(G4VisAttributes(cSkyBlue));
+    //l_blk->SetVisAttributes(G4VisAttributes::Invisible);
+    l_blk->SetVisAttributes(G4VisAttributes(cSkyBlue));
     G4RotationMatrix* rr = new G4RotationMatrix(R0);
     rr->invert();
     new G4PVPlacement(rr,
@@ -127,16 +127,16 @@ void DegTube::Generate(const G4RotationMatrix& R0,
     
     G4LogicalVolume* lv = 0;
     lv = new G4LogicalVolume(new G4Tubs("GasDegTube",
-                                        25.4 *mm,
-                                        26.4 * mm,
-                                        0.5 * thickness,
+                                        15.0 *mm,
+                                        16.0 *mm,
+                                        0.5 *thickness,
                                         0.,
                                         360.0*deg),
                              bg_mat,
                              "lv_t");
     const G4ThreeVector VL = R0 * ( ( 0.0 ) * zhat );
        
-    lv->SetVisAttributes(new G4VisAttributes(cGreen));
+    lv->SetVisAttributes(new G4VisAttributes(cBlue));
     new G4PVPlacement(rr,
                       VL,
                       lv,

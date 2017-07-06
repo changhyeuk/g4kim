@@ -21,7 +21,7 @@ DetectorMessenger::DetectorMessenger(DetectorConstruction* idc)
     
     //---------------------------------------------------------------------------
     
-    deg_Length = new G4UIcmdWithADouble("/det/DegraderLength", this);
+    deg_Length = new G4UIcmdWithADouble("/det/HeGasLength", this);
     deg_Length->SetGuidance("Gas Degrader Length ");
     deg_Length->SetParameterName("DegLenght", false);
     deg_Length->AvailableForStates(G4State_PreInit);
