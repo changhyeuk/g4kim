@@ -17,9 +17,9 @@
 /beam/energy_esratio 13 0.001 # dispersion check with pencil beam
 /beam/rseed 3
 
-/ana/result novis novis
+/ana/result novis Be_He
 
 /run/initialize
 
-/run/beamOn 10000
+/run/beamOn 50000
 
