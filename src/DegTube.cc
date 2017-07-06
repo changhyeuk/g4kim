@@ -6,6 +6,7 @@
 #include "G4VisAttributes.hh"
 #include "G4Colour.hh"
 #include "G4Tubs.hh"
+#include "CalorimeterSD.hh"
 
 #include "CGlobal.hh"
 #include "DegTube.hh"
@@ -107,7 +108,17 @@ void DegTube::Generate(const G4RotationMatrix& R0,
                                0.,
                                360.0 * deg);
     const G4ThreeVector VC = V0 + R0 * (0.5 * thickness * zhat);
-    G4LogicalVolume* l_blk = new G4LogicalVolume(s_blk, body_mat, "l_blk");
+    //G4LogicalVolume* l_blk = new G4LogicalVolume(s_blk, body_mat, "l_blk");
+    G4LogicalVolume* l_blk = new G4LogicalVolume(s_blk,
+						 body_mat,
+						 "l_blk",
+						 0,
+						 new CalorimeterSD("HeGas",
+								   R0,
+								   VC,
+								   150,-(0.03*m)/2,(0.03*m)/2,
+                                                                   150,-(0.03*m)/2,(0.03*m)/2,
+                                                                   400,-thickness/2,thickness/2));
     //l_blk->SetVisAttributes(G4VisAttributes::Invisible);
     l_blk->SetVisAttributes(G4VisAttributes(cSkyBlue));
     G4RotationMatrix* rr = new G4RotationMatrix(R0);
