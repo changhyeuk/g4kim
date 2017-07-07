@@ -23,6 +23,7 @@ G4ThreeVector BeamLineComponent::origin = G4ThreeVector(0., 0., 0.);
 G4Material*   BeamLineComponent::mVacuum =
 G4NistManager::Instance()->FindOrBuildMaterial("G4_Galactic", false);
 
+G4Colour BeamLineComponent::cWhite(1.0,1.0,1.0);
 G4Colour BeamLineComponent::cRed(1., 0., 0.);
 G4Colour BeamLineComponent::cOrange(1., .5, 0.);
 G4Colour BeamLineComponent::cYellow(1., 1., 0.);

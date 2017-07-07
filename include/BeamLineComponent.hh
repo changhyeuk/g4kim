@@ -66,7 +66,8 @@ protected:
     static G4ThreeVector origin;
     
     static G4Material*   mVacuum;
-    
+
+    static G4Colour      cWhite;
     static G4Colour      cRed;
     static G4Colour      cOrange;
     static G4Colour      cYellow;

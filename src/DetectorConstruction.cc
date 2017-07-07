@@ -61,7 +61,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     //WaterPhantom WP(0.03 * m, 0.03 * m, 0.01 * m, "G4_He");
     //DegTube BDegTube(0.01 * m, 0.01 * m,"G4_He",2);
     DegTube     BDegTube(degLength * m,degLength * m,degraderMaterial,degPressure );
-    std::cout<<" DegLength :"<<degLength<<"    "<<" degPressure :"<< degPressure<<std::endl;
+    std::cout<<" DegLength :"<< degLength <<"    "<<" degPressure :"<< degPressure<<std::endl;
     /*
     Block         BWindowIN(0.1 * m, 0.00005 * m,"G4_Ti");
     Block         BWindowOUT(0.00005 * m, 0.00005 * m,"G4_Ti");
@@ -74,15 +74,19 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     
     // ************************ Beam Line *************************
     
-    bcm.Add(D.New(0.2 * m));
+    bcm.Add(D.New(0.01 * m));
+    
     bcm.Add(BeT.New());
-    //bcm.Add(WP.New());
-    bcm.Add(BDegTube.New());
-    bcm.Add(BeT.New());
-    //bcm.Add(WP.New());
-    bcm.Add(BDegTube.New());
-    bcm.Add(BeT.New());
-    bcm.Add(D.New(0.2 * m));
+
+      bcm.Add(BDegTube.New());
+
+    bcm.Add(BeT.New(0.001*m));
+
+      bcm.Add(BDegTube.New(0.02*m));
+      
+    bcm.Add(BeT.New(0.002*m));
+
+    bcm.Add(D.New(0.01 * m));
     
     /*
     bcm.Add(BWindowIN.New(0.00005 * m));

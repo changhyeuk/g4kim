@@ -44,6 +44,7 @@ private:
     G4double HalfY;
     G4double HalfZ;
     G4Material* body_mat;
+    G4Material* bg_mat;
 };
 
 #endif

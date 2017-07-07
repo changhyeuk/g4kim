@@ -87,6 +87,7 @@ void BeTarget::Generate(const G4RotationMatrix& R0,
 {
     if ( HalfZ == 0.0 ) return;
     
+    bg_mat = G4NistManager::Instance()->FindOrBuildMaterial("G4_Al", false);
     //G4Box*s_blk = new G4Box("degBeTarget",HalfX/2, HalfY/2,HalfZ/2);
     G4Tubs* s_blk = new G4Tubs("degBetarget",
 			       0.,
@@ -95,8 +96,8 @@ void BeTarget::Generate(const G4RotationMatrix& R0,
 			       0.,
 			       360.0 * deg);
     const G4ThreeVector VC = V0 + R0 * ( 0.5 * HalfZ * zhat);
-    //G4cout<<" VO: "<<V0<<G4endl;
-    //G4cout<<" VC: "<<VC<<G4endl;
+    //G4cout<<" BeTarget VO: "<<V0<<G4endl;
+    //G4cout<<" BeTarget VC: "<<VC<<G4endl;
     //G4cout<<" HalfZ : "<<HalfZ/2<<G4endl;
     //G4LogicalVolume* l_blk = new G4LogicalVolume(s_blk, body_mat, "l_blk");
     G4LogicalVolume* l_blk = new G4LogicalVolume(s_blk,
@@ -114,5 +115,26 @@ void BeTarget::Generate(const G4RotationMatrix& R0,
     G4RotationMatrix* rr = new G4RotationMatrix(R0);
     rr->invert();
     new G4PVPlacement(rr,VC,l_blk,"p_blk",mother_lv,false,0);
+
+
+    G4LogicalVolume* lv = 0;
+    lv = new G4LogicalVolume(new G4Tubs("GasDegTube",
+                                        HalfX/2, // Be Target HalfX radius
+                                        ((HalfX/2)+1) *mm, // 
+                                        HalfZ/2,
+                                        0.,
+                                        360.0*deg),
+                             bg_mat,
+                             "lv_t");
+    const G4ThreeVector VL = R0 * ( ( 0.0 ) * zhat );
+       
+    lv->SetVisAttributes(new G4VisAttributes(cWhite));
+    new G4PVPlacement(rr,
+                      VL,
+                      lv,
+                      "pv_l",
+                      l_blk,
+                      false,
+                      0);
     
 }

@@ -89,7 +89,7 @@ G4ThreeVector
 DegTube::GetNextPosition(const G4ThreeVector&    V0,
                           const G4RotationMatrix& R0)
 {
-    return V0 + R0 * (total_length * zhat);
+    return V0 + R0 * (thickness * zhat);
 }
 
 
@@ -131,11 +131,6 @@ void DegTube::Generate(const G4RotationMatrix& R0,
                       false,
                       0);
     
-    G4cout<<" Tube Length : "<<total_length<<G4endl;
-    G4cout<<" Gas Body : "<<body_mat<<G4endl;
-    G4cout<<" Tube Body : "<<bg_mat<<G4endl;
-    
-    
     G4LogicalVolume* lv = 0;
     lv = new G4LogicalVolume(new G4Tubs("GasDegTube",
                                         15.0 *mm,
@@ -147,7 +142,7 @@ void DegTube::Generate(const G4RotationMatrix& R0,
                              "lv_t");
     const G4ThreeVector VL = R0 * ( ( 0.0 ) * zhat );
        
-    lv->SetVisAttributes(new G4VisAttributes(cBlue));
+    lv->SetVisAttributes(new G4VisAttributes(cWhite));
     new G4PVPlacement(rr,
                       VL,
                       lv,
@@ -155,5 +150,4 @@ void DegTube::Generate(const G4RotationMatrix& R0,
                       l_blk,
                       false,
                       0);
-    
 }
